@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Snake</title>
+		<style>
+			 body {
+				text-align: center;
+				background: #A5A5A5;
+			 }
+			 
+			 canvas{
+				outline: 1px solid #000;
+				background: #ccc;
+			}
+		</style>
+		<script>
+"use strict";
+
+var canvas, ctx, snake, food, speed;
+var grow = false;
+var collision = false;
+
+var cfg = {
+	grid: {
+		w: 25,
+		h: 25
+	},
+	fieldSize: 20,
+	snakeColor: '#f80',
+	foodColor: '#00f',
+	startLength: 3,
+	startSpeed: 500
+};
+
+window.onload = function() {
+	init();
+};
+
+window.onkeydown = function(e) {
+	if (!snake) return;
+	var key = e.which;
+	
+	switch (key) {
+		case 37: if (snake.dir != 'r') snake.dir = 'l'; break;
+		case 38: if (snake.dir != 'd') snake.dir = 'u'; break;
+		case 39: if (snake.dir != 'l') snake.dir = 'r'; break;
+		case 40: if (snake.dir != 'u') snake.dir = 'd'; break;
+		default: break;
+	}
+};
+
+function init() {
+	canvas = document.getElementById('canvas');
+	canvas.width = cfg.fieldSize * cfg.grid.w;
+	canvas.height = cfg.fieldSize * cfg.grid.h;
+	ctx = canvas.getContext('2d');
+	
+	snake = {};
+	snake.segments = [];
+	for (var i = 0; i < cfg.startLength; i++) {
+		snake.segments.push({x: Math.floor(cfg.grid.w / 2), y: Math.floor(cfg.grid.h / 2) + i});
+	}
+	snake.dir = 'u';
+	
+	speed = cfg.startSpeed;
+	
+	makeFood();
+	
+	render();
+	setTimeout(gameLoop, speed);
+}
+
+var gameLoop = function() {
+	if (!grow) snake.segments.splice(snake.segments.length - 1);
+	else grow = false;
+	var head = snake.segments[0];
+	switch(snake.dir) {
+		case 'u':
+			snake.segments.unshift({x: head.x, y: head.y - 1});
+			break;
+		case 'd':
+			snake.segments.unshift({x: head.x, y: head.y + 1});
+			break;
+		case 'l':
+			snake.segments.unshift({x: head.x - 1, y: head.y});
+			break;
+		case 'r':
+			snake.segments.unshift({x: head.x + 1, y: head.y});
+			break;
+		default: break;
+	}
+	head = snake.segments[0];
+	if (head.x === food.x && head.y === food.y) {
+		makeFood();
+		grow = true;
+		if (speed > 50) speed -= 10;
+	}
+	if (head.x < 0 || head.x >= cfg.grid.w || head.y < 0 || head.y >= cfg.grid.h) collision = true;
+	for (var i = 1; i < snake.segments.length; i++) {
+		var segment = snake.segments[i];
+		if (head.x == segment.x && head.y == segment.y) {
+			collision = true;
+			break;
+		}
+	}
+	
+	render();
+	if (collision) alert('GAME OVER');
+	else setTimeout(gameLoop, speed);
+}
+
+function makeFood() {
+	var x = Math.floor(Math.random() * cfg.grid.w);
+	var y = Math.floor(Math.random() * cfg.grid.h);
+	food = {x: x, y: y};
+}
+
+function render() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	drawSnake();
+	drawFood();
+}
+
+function drawSnake() {
+	ctx.fillStyle = cfg.snakeColor;
+	for (var segment of snake.segments) {
+		ctx.fillRect(segment.x * cfg.fieldSize, segment.y * cfg.fieldSize, cfg.fieldSize, cfg.fieldSize);
+	}
+}
+
+function drawFood() {
+	if (!food) return;
+	ctx.fillStyle = cfg.foodColor;
+	ctx.fillRect(food.x * cfg.fieldSize, food.y * cfg.fieldSize, cfg.fieldSize, cfg.fieldSize);
+}
+		</script>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+	</body>
+</html>

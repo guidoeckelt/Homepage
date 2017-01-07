@@ -10,6 +10,7 @@
 			{"text":"SuperGraVtron","tooltip":"VVVVVV-Minigame clone","url":"https://roederandreas.github.io/SuperGraVtron/","source":"_blank"},
 			{"text":"GameManager","tooltip":"Den GameManager öffnen","url":"/Games/","source":"_self"},
 			{"text":"Tetris","tooltip":"Der klassiker Tetris","url":"/Games/Tetris/","source":"_self"},
+			{"text":"Snake","tooltip":"Der klassiker Sanke","url":"/Games/Sanke/","source":"_self"},
 			{"text":"Battle Arena","tooltip":"Battle Arena","url":"/Games/BattleArena/","source":"_self"}
 		]
 	},
