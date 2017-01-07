@@ -1,0 +1,147 @@
+/*===Helper===*/
+.transclude-helper{
+    width: 100%;
+}
+@media (min-width: 768px) {
+    #bs-example-navbar-collapse-1{
+        margin-left: 95px;
+    }
+}
+/*===Ge-Paragraph===*/
+.ge-paragraph{
+    width: 100%;
+
+    padding: 10px 20px;
+}
+
+.ge-paragraph > .ge-paragraph-header{
+    width: 100%;
+
+    margin-bottom: 10px;
+}
+.ge-paragraph > .ge-paragraph-header > span{
+    font-weight:  700;
+    font-size: 18pt;
+
+    text-decoration: underline solid #000000;
+    text-decoration-skip: none;
+}
+.ge-paragraph > .ge-paragraph-footer{
+    width: 100%;
+
+    margin-top: 10px;
+}
+
+/*===Ge-Link===*/
+.ge-link{
+
+}
+
+/*===Ge-List===*/
+.ge-list{
+    width: 100%;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+.ge-list > .ge-list-header{
+    width: 100%;
+
+    padding: 0 20px 10px ;
+}
+.ge-list > .ge-list-header > span{
+    width: 100%;
+
+    font-weight:  700;
+    font-size: 18pt;
+
+    text-decoration: underline solid #000000;
+    text-decoration-skip: none;
+}
+.ge-list > .ge-list-items{
+    width: 100%;
+
+    list-style-type: disc;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+
+    padding: 0 25px 0;
+    margin-bottom: 0;
+
+}
+/*===Tier2 Ge-List===*/
+.ge-list .ge-list > .ge-list-header{
+
+    padding: 5px 20px;
+}
+.ge-list .ge-list > .ge-list-header > span{
+
+    font-size: 14pt;
+    font-weight:  600;
+}
+.ge-list .ge-list > .ge-list-items{
+    list-style-type: circle;
+
+    padding: 0 25px 10px;
+}
+/*===Tier3 Ge-List===*/
+.ge-list .ge-list .ge-list > .ge-list-header > span{
+
+    font-size: 12pt;
+    font-weight:  600;
+}
+.ge-list .ge-list .ge-list > .ge-list-items{
+    list-style-type: '-  ';
+    padding: 0 25px 5px;
+}
+/*===Ge List Entry===*/
+.ge-list-entry{
+    width: 100%;
+}
+.ge-list-entry > span{
+
+    font-size: 14pt;
+    font-weight: 500;
+}
+/*===Ge List Entry Titled===*/
+.ge-list-entry-titled{
+    width: 100%;
+}
+.ge-list-entry-titled > .ge-list-entry-title {
+    display: inline-block;
+
+    font-size: 16pt;
+    font-weight: 500;
+}
+.ge-list-entry-titled > .ge-list-entry-title::after{
+    content:':';
+
+}
+.ge-list-entry-titled > .ge-list-entry-title > span{
+
+}
+.ge-list-entry-titled > .ge-list-entry-text {
+    display: inline-block;
+
+    padding: 0 0 0 5px;
+}
+.ge-list-entry-titled > .ge-list-entry-text > span{
+
+    font-size: 14pt;
+    font-weight: 500;
+}
+
+/*===Ge-Footer===*/
+.ge-footer{
+
+    display: flex;
+    flex-flow: row nowrap;
+
+    padding: 10px 20px;
+}
+.ge-footer > .ge-footer-content{
+
+    flex-grow: 1;
+}

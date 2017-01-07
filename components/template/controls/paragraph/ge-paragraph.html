@@ -1,0 +1,11 @@
+<section class="ge-paragraph panel">
+    <header class="ge-paragraph-header" ng-show="title != null && title != ''">
+        <span>{{title}}</span>
+    </header>
+    <div ng-transclude>
+
+    </div>
+    <footer class="ge-paragraph-footer">
+        <div ng-bind="footer" ng-show="footer != null && footer != ''"></div>
+    </footer>
+</section>

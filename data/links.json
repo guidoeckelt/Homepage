@@ -1,0 +1,23 @@
+﻿[
+	{"text":"Projects","tooltip":"Verschiedene Links zu Projekten","links":
+		[
+			{"text":"Tournament-Maker","tooltip":"Verwalte dein Turnier","url":"https://guidoeckelt.github.io/Tournament-Maker/","source":"_self"},
+			{"text":"Fractal Maker","tooltip":"Fraktalbaukasten zum Experimentieren","url":"https://guidoeckelt.github.io/FractalMaker/","source":"_self"}
+		]
+	},
+	{"text":"Games","tooltip":"Verschiedene Spiele zum Ausprobieren","links":
+		[
+			{"text":"SuperGraVtron","tooltip":"VVVVVV-Minigame clone","url":"https://roederandreas.github.io/SuperGraVtron/","source":"_blank"},
+			{"text":"GameManager","tooltip":"Den GameManager öffnen","url":"/Games/","source":"_self"},
+			{"text":"Tetris","tooltip":"Der klassiker Tetris","url":"/Games/Tetris/","source":"_self"},
+			{"text":"Battle Arena","tooltip":"Battle Arena","url":"/Games/BattleArena/","source":"_self"}
+		]
+	},
+	{"text":"Stuff","tooltip":"Variety of Links of different meanings","links":
+		[
+			{"text":"Developer Excuses","tooltip":"Entwickler versuchen sich rauszureden","url":"http://developerexcuses.com/","source":"_blank"},
+			{"text":"Programming Excuses","tooltip":"Ausreden beim Programmieren","url":"http://programmingexcuses.com/","source":"_blank"}
+		]
+	},
+	{"text":"About The Developer","tooltip":"Section about the programmer behind the scenes","url":"/AboutTheDeveloper/","source": "_self"}
+]
