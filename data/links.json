@@ -8,10 +8,10 @@
 	{"text":"Games","tooltip":"Verschiedene Spiele zum Ausprobieren","links":
 		[
 			{"text":"SuperGraVtron","tooltip":"VVVVVV-Minigame clone","url":"https://roederandreas.github.io/SuperGraVtron/","source":"_blank"},
-			{"text":"GameManager","tooltip":"Den GameManager öffnen","url":"/Games/","source":"_self"},
-			{"text":"Tetris","tooltip":"Der klassiker Tetris","url":"/Games/Tetris/","source":"_self"},
-			{"text":"Snake","tooltip":"Der klassiker Snake","url":"/Games/Snake/","source":"_self"},
-			{"text":"Battle Arena","tooltip":"Battle Arena","url":"/Games/BattleArena/","source":"_self"}
+			{"text":"GameManager","tooltip":"Den GameManager öffnen","url":"/Homepage/Games/","source":"_self"},
+			{"text":"Tetris","tooltip":"Der klassiker Tetris","url":"/Homepage/Games/Tetris/","source":"_self"},
+			{"text":"Snake","tooltip":"Der klassiker Snake","url":"/Homepage/Games/Snake/","source":"_self"},
+			{"text":"Battle Arena","tooltip":"Battle Arena","url":"/Homepage/Games/BattleArena/","source":"_self"}
 		]
 	},
 	{"text":"Stuff","tooltip":"Variety of Links of different meanings","links":
@@ -20,5 +20,5 @@
 			{"text":"Programming Excuses","tooltip":"Ausreden beim Programmieren","url":"http://programmingexcuses.com/","source":"_blank"}
 		]
 	},
-	{"text":"About The Developer","tooltip":"Section about the programmer behind the scenes","url":"/AboutTheDeveloper/","source": "_self"}
+	{"text":"About The Developer","tooltip":"Section about the programmer behind the scenes","url":"/Homepage/AboutTheDeveloper/","source": "_self"}
 ]
