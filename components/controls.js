@@ -14,7 +14,7 @@ controls.directive('geParagraph',function () {
         controller: function($scope, $element) {
 
         },
-        templateUrl: "/components/template/controls/paragraph/ge-paragraph.html",
+        templateUrl: "/Homepage/components/template/controls/paragraph/ge-paragraph.html",
         transclude: true,
         replace: true
     };
@@ -33,7 +33,7 @@ controls.directive('geLink', function() {
         controller: function($scope, $element) {
 
         },
-        templateUrl: "/components/template/controls/ge-link.html",
+        templateUrl: "/Homepage/components/template/controls/ge-link.html",
         replace: true
     };
 });
@@ -47,7 +47,7 @@ controls.directive('geList', function() {
         controller: function($scope, $element) {
 
         },
-        templateUrl: "/components/template/controls/list/ge-list.html",
+        templateUrl: "/Homepage/components/template/controls/list/ge-list.html",
         transclude: true,
         replace: true
     };
@@ -61,7 +61,7 @@ controls.directive('geListEntry', function() {
         controller: function($scope, $element) {
 
         },
-        templateUrl: "/components/template/controls/list/ge-list-entry.html",
+        templateUrl: "/Homepage/components/template/controls/list/ge-list-entry.html",
         replace: true
     };
 });
@@ -76,7 +76,7 @@ controls.directive('geListEntryTitled', function() {
 
         },
         restrict: 'E',
-        templateUrl: "/components/template/controls/list/ge-list-entry-titled.html",
+        templateUrl: "/Homepage/components/template/controls/list/ge-list-entry-titled.html",
         transclude: true,
         replace: true
     };
@@ -93,7 +93,7 @@ controls.directive('geFooter',function () {
         controller: function($scope, $element) {
 
         },
-        templateUrl: "/components/template/controls/footer/ge-footer.html",
+        templateUrl: "/Homepage/components/template/controls/footer/ge-footer.html",
         transclude: true,
         replace: true
     };
@@ -110,7 +110,7 @@ controls.directive('geBackToTop',function () {
                 window.scrollTo(0,0);
             }
         },
-        templateUrl: "/components/template/controls/footer/ge-back-to-top.html",
+        templateUrl: "/Homepage/components/template/controls/footer/ge-back-to-top.html",
         replace: true
     };
 });
