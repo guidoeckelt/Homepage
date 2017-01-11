@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   $json = json_encode($jsonString);
 
   if($json == false){
-    echo "Couldnt output links";
+    echo 'Couldnt output links';
     return;
   }
   header('Content-Type: application/json');
