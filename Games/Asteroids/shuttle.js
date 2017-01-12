@@ -11,6 +11,7 @@ function Shuttle(x,y){
   this.isRotating = false;
   this.isClockwise = true;
   this.rotateFactor = 50;
+  this.isShooting = false;
 
   var gunX = this.width/2;
   var gunY = this.height*3/4;
@@ -20,7 +21,19 @@ function Shuttle(x,y){
     width : 3,
     height: 15,
     direction : 0,//angle in radians
-    isShooting : false
+    shuttle : this,
+    isShooting : false,
+    shoot : function(){
+      if(!this.isShooting){
+        return;
+      }
+      var dir = directionVectorFromAngle(this.direction);
+      var x = this.shuttle.x - (this.shuttle.width/2) + this.x - dir.x;
+      var y = this.shuttle.y - (this.shuttle.height/2) + this.y - dir.y;
+      var projectile = new Projectile(x,y,this.direction);
+      Asteroids.add(projectile);
+      console.log('gun shooting');
+    }
   }
 
   this.move = function(){
@@ -59,5 +72,15 @@ function Shuttle(x,y){
     var offset = this.isClockwise?Math.PI/factor:Math.PI/(-1*factor);
     this.direction += offset;
     console.log('new dir '+this.direction);
+  };
+  this.shoot = function(){
+    if(!this.isShooting){
+      return;
+    }
+    var dir = directionVectorFromAngle(this.direction);
+    var projectile = new Projectile(this.x+dir.x,this.y+dir.y,this.direction);
+    projectile.shuttle = this;
+    Asteroids.add(projectile);
+    console.log('shuttle shooting');
   };
 }
