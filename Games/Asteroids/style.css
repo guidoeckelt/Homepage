@@ -5,6 +5,7 @@ body{
   width: 100%;
   height: 100%;
   height: 100vh;
+  overflow:hidden;
 }
 #root {
   width: 100%;
@@ -20,6 +21,8 @@ body{
   outline: 1px solid #000;
 
   background: #CCCCCC;
-  margin: auto;
-
+}
+body.iframe #canvas{
+  width:100%;
+  /*height:100%;*/
 }
