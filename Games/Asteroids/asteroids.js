@@ -25,6 +25,7 @@ function Asteroids(canvasId){
       self.canvas.id = 'canvas';
       document.getElementById('root').appendChild(self.canvas);
     }
+    self.canvas.style.cursor = 'none';
     self.canvas.addEventListener('mousemove',function(event){
       Asteroids.mouseX = event.clientX - self.canvas.getBoundingClientRect().left;
       Asteroids.mouseY = event.clientY - self.canvas.getBoundingClientRect().top;
@@ -32,9 +33,7 @@ function Asteroids(canvasId){
 
       var x = self.shuttle.x - (self.shuttle.width/2);
       var y = self.shuttle.y - (self.shuttle.height/2);
-      // var center = {x:self.shuttle.gun.x,y:self.shuttle.gun.y};
       var center = {x:x+self.shuttle.gun.x,y:y+self.shuttle.gun.y};
-      // var center = {x:self.canvas.width/2-x+self.shuttle.gun.x,y:self.canvas.height/2-y+self.shuttle.gun.y};
       // var center = {x:self.canvas.width/2,y:self.canvas.height/2};
       var lot = {x:center.x,y:center.y-1};
       var mouse = {x:Asteroids.mouseX,y:Asteroids.mouseY};
@@ -44,6 +43,7 @@ function Asteroids(canvasId){
       self.shuttle.gun.direction = angle;
       // console.log(angle);
     });
+
     document.body.onkeydown = function(event){
       var key = event.key;
       var keyC = event.charCode;
@@ -70,33 +70,19 @@ function Asteroids(canvasId){
       var key = event.key;
       var keyC = event.charCode;
       // console.log('keyC:'+keyC+' key:'+key);
+      //Moving
       if(key == 'w'){
         self.shuttle.isMoving = false;
       }else if (key == 's') {
         self.shuttle.isMoving = false;
       }
+      //Rotating
       if (key == 'd') {
         self.shuttle.isRotating = false;
       }else if (key == 'a'){
         self.shuttle.isRotating = false;
       }
     };
-    // self.canvas.addEventListener('keydown',function(event){
-    //   var key = event.key;
-    //   var keyC = event.charCode;
-    //   console.log('keyC:'+keyC+' key:'+key);
-    //   if(key == 'w'){
-    //     self.shuttle.isMoving = true;
-    //   }
-    // });
-    // self.canvas.addEventListener('keyup',function(event){
-    //   var key = event.key;
-    //   var keyC = event.charCode;
-    //   console.log('keyC:'+keyC+' key:'+key);
-    //   if(key == 'w'){
-    //     self.shuttle.isMoving = false;
-    //   }
-    // });
 
     self.renderer = new Renderer(self);
     self.shuttle = new Shuttle(self.canvas.width/2,self.canvas.height/2);

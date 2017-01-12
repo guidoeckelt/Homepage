@@ -38,13 +38,13 @@ function Shuttle(x,y){
     this.y -= directionVector.y*this.speed;
     if(this.x+(this.height/2) < 0){
       this.x = Asteroids.getCanvas().width;
-      console.log('X-axis out of pov');
+      // console.log('X-axis out of pov');
     }else if(this.x-(this.height/2) > Asteroids.getCanvas().width){
       this.x = 0;
-      console.log('X-axis out of pov');
+      // console.log('X-axis out of pov');
     }else if(this.y+(this.height/2) < 0){
       this.y = Asteroids.getCanvas().height;
-      console.log('Y-axis out of pov');
+      // console.log('Y-axis out of pov');
     }else if(this.y-(this.height/2) > Asteroids.getCanvas().height){
       this.y = 0;
       // console.log('Y-axis out of pov');
@@ -55,7 +55,7 @@ function Shuttle(x,y){
     if(!this.isRotating){
       return;
     }
-    var factor = this.rotateFactor;///this.speed;
+    var factor = this.rotateFactor;//this.speed;
     var offset = this.isClockwise?Math.PI/factor:Math.PI/(-1*factor);
     this.direction += offset;
     console.log('new dir '+this.direction);
