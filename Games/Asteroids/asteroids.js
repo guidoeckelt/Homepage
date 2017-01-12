@@ -7,11 +7,13 @@ function Asteroids(canvasId){
   Asteroids.mouseX = -1;
   Asteroids.mouseY = -1;
 
+  Asteroids.getCanvas = function(){ return self.canvas; };
   self.shuttle = null;
 
   gameLoop = function(){
 
-    self.shuttle.moveForward();
+    self.shuttle.move();
+    self.shuttle.rotate();
   };
 
 // Init
@@ -30,7 +32,6 @@ function Asteroids(canvasId){
 
       var x = self.shuttle.x - (self.shuttle.width/2);
       var y = self.shuttle.y - (self.shuttle.height/2);
-
       // var center = {x:self.shuttle.gun.x,y:self.shuttle.gun.y};
       var center = {x:x+self.shuttle.gun.x,y:y+self.shuttle.gun.y};
       // var center = {x:self.canvas.width/2-x+self.shuttle.gun.x,y:self.canvas.height/2-y+self.shuttle.gun.y};
@@ -39,31 +40,68 @@ function Asteroids(canvasId){
       var mouse = {x:Asteroids.mouseX,y:Asteroids.mouseY};
       var v1 = {x:lot.x-center.x,y:lot.y-center.y};
       var v2 = {x:mouse.x-center.x,y:mouse.y-center.y};
-      var angle = radiansBetweenVectors(v2,v1);
-      self.shuttle.gun.direction = radiansBetweenVectors(v2,v1) +Math.PI;
+      var angle = radiansBetweenVectors(v2,v1)+Math.PI;
+      self.shuttle.gun.direction = angle;
       // console.log(angle);
     });
-    self.canvas.addEventListener('keydown',function(event){
+    document.body.onkeydown = function(event){
       var key = event.key;
       var keyC = event.charCode;
-      console.log('keyC:'+keyC+' key:'+key);
+      // console.log('keyC:'+keyC+' key:'+key);
+      //Moving
       if(key == 'w'){
+        self.shuttle.isForward = true;
+        self.shuttle.isMoving = true;
+      }else if (key == 's') {
+        self.shuttle.isForward = false;
         self.shuttle.isMoving = true;
       }
-    });
-    self.canvas.addEventListener('keyup',function(event){
+      //Rotating
+      if (key == 'd') {
+        self.shuttle.isClockwise = true;
+        self.shuttle.isRotating = true;
+      }else if (key == 'a'){
+        self.shuttle.isClockwise = false;
+        self.shuttle.isRotating = true;
+      }
+
+    };
+    document.body.onkeyup = function(event){
       var key = event.key;
       var keyC = event.charCode;
-      console.log('keyC:'+keyC+' key:'+key);
+      // console.log('keyC:'+keyC+' key:'+key);
       if(key == 'w'){
         self.shuttle.isMoving = false;
+      }else if (key == 's') {
+        self.shuttle.isMoving = false;
       }
-    });
+      if (key == 'd') {
+        self.shuttle.isRotating = false;
+      }else if (key == 'a'){
+        self.shuttle.isRotating = false;
+      }
+    };
+    // self.canvas.addEventListener('keydown',function(event){
+    //   var key = event.key;
+    //   var keyC = event.charCode;
+    //   console.log('keyC:'+keyC+' key:'+key);
+    //   if(key == 'w'){
+    //     self.shuttle.isMoving = true;
+    //   }
+    // });
+    // self.canvas.addEventListener('keyup',function(event){
+    //   var key = event.key;
+    //   var keyC = event.charCode;
+    //   console.log('keyC:'+keyC+' key:'+key);
+    //   if(key == 'w'){
+    //     self.shuttle.isMoving = false;
+    //   }
+    // });
 
     self.renderer = new Renderer(self);
     self.shuttle = new Shuttle(self.canvas.width/2,self.canvas.height/2);
 
-    self.process = window.setInterval(function(){ gameLoop(); },100);
+    self.process = window.setInterval(function(){ gameLoop(); },10);
     self.renderer.start();
   };
 }
@@ -107,11 +145,11 @@ function Renderer(gameP){
 
   var drawShuttle = function(shuttle){
     //shuttle
-    var x = shuttle.x - (shuttle.width/2);
-    var y = shuttle.y - (shuttle.height/2);
-    context.translate(x,y);
-    context.rotate(shuttle.direction);
-
+    var offsetX = - (shuttle.width/2);
+    var offsetY = - (shuttle.height/2);
+    context.translate(shuttle.x,shuttle.y);
+    context.rotate(shuttle.direction - Math.PI/2);
+    context.translate(offsetX,offsetY);
     context.beginPath();
     context.moveTo(0,0+shuttle.height);//left bottom
     context.lineTo(0+shuttle.width,0+shuttle.height);//right bottom
