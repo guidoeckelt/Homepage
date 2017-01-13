@@ -1,86 +1,76 @@
 function Shuttle(x,y){
-  this.x = x;
-  this.y = y;
-  this.width = 30;
-  this.height = 50;
+  var self = this;
+  self.x = x;
+  self.y = y;
+  self.width = 30;
+  self.height = 50;
+  self.direction = 0;//heading angle in radians
+  self.speed = 5;
+  self.rotateFactor = 50;
+  self.reloadTime = 100;//in ms
 
-  this.direction = 0;//heading angle in radians
-  this.isMoving = false;
-  this.isForward = true;
-  this.speed = 5;
-  this.isRotating = false;
-  this.isClockwise = true;
-  this.rotateFactor = 50;
-  this.isShooting = false;
+  self.isMoving = false;
+  self.isForward = true;
+  self.isRotating = false;
+  self.isClockwise = true;
+  self.isShooting = false;
+  self.isReloading = false;
 
-  var gunX = this.width/2;
-  var gunY = this.height*3/4;
-  this.gun = {
-    x : gunX,
-    y : gunY,
-    width : 3,
-    height: 15,
-    direction : 0,//angle in radians
-    shuttle : this,
-    isShooting : false,
-    shoot : function(){
-      if(!this.isShooting){
-        return;
-      }
-      var dir = directionVectorFromAngle(this.direction);
-      var x = this.shuttle.x - (this.shuttle.width/2) + this.x - dir.x;
-      var y = this.shuttle.y - (this.shuttle.height/2) + this.y - dir.y;
-      var projectile = new Projectile(x,y,this.direction);
-      Asteroids.add(projectile);
-      console.log('gun shooting');
-    }
-  }
+  var gunX = self.width/2;
+  var gunY = self.height*3/4;
+  self.gun = new ShuttleGun(gunX,gunY,self.direction);
+  self.gun.shuttle = self;
 
-  this.move = function(){
-    if(!this.isMoving){
+  self.move = function(){
+    if(!self.isMoving){
       return;
     }
-    var directionVector = directionVectorFromAngle(this.direction);
-    if(!this.isForward){
+    var directionVector = directionVectorFromAngle(self.direction);
+    if(!self.isForward){
       directionVector.x *= -1;
       directionVector.y *= -1;
     }
-    var oldX = this.x;
-    var oldY = this.y;
-    this.x -= directionVector.x*this.speed;
-    this.y -= directionVector.y*this.speed;
-    if(this.x+(this.height/2) < 0){
-      this.x = Asteroids.getCanvas().width;
+    var oldX = self.x;
+    var oldY = self.y;
+    self.x -= directionVector.x*self.speed;
+    self.y -= directionVector.y*self.speed;
+    if(self.x+(self.height/2) < 0){
+      self.x = Asteroids.getCanvas().width;
       // console.log('X-axis out of pov');
-    }else if(this.x-(this.height/2) > Asteroids.getCanvas().width){
-      this.x = 0;
+    }else if(self.x-(self.height/2) > Asteroids.getCanvas().width){
+      self.x = 0;
       // console.log('X-axis out of pov');
-    }else if(this.y+(this.height/2) < 0){
-      this.y = Asteroids.getCanvas().height;
+    }else if(self.y+(self.height/2) < 0){
+      self.y = Asteroids.getCanvas().height;
       // console.log('Y-axis out of pov');
-    }else if(this.y-(this.height/2) > Asteroids.getCanvas().height){
-      this.y = 0;
+    }else if(self.y-(self.height/2) > Asteroids.getCanvas().height){
+      self.y = 0;
       // console.log('Y-axis out of pov');
     }
-    console.log('shuttles new postion is '+this.x+':'+this.y);
+    // console.log('shuttles new postion is '+self.x+':'+self.y);
   };
-  this.rotate = function(){
-    if(!this.isRotating){
+  self.rotate = function(){
+    if(!self.isRotating){
       return;
     }
-    var factor = this.rotateFactor;//this.speed;
-    var offset = this.isClockwise?Math.PI/factor:Math.PI/(-1*factor);
-    this.direction += offset;
-    console.log('new dir '+this.direction);
+    var factor = self.rotateFactor;//self.speed;
+    var offset = self.isClockwise?Math.PI/factor:Math.PI/(-1*factor);
+    self.direction += offset;
+    // console.log('new dir '+self.direction);
   };
-  this.shoot = function(){
-    if(!this.isShooting){
+  self.shoot = function(){
+    if(!self.isShooting){
       return;
     }
-    var dir = directionVectorFromAngle(this.direction);
-    var projectile = new Projectile(this.x+dir.x,this.y+dir.y,this.direction);
-    projectile.shuttle = this;
+    if(self.isReloading){
+      return;
+    }
+    var dir = directionVectorFromAngle(self.direction);
+    var projectile = new Projectile(self.x+dir.x,self.y+dir.y,self.direction);
+    projectile.shuttle = self;
     Asteroids.add(projectile);
-    console.log('shuttle shooting');
+    self.isReloading = true;
+    window.setTimeout(function(){ self.isReloading = false;},self.reloadTime);
+    // console.log('shuttle shooting');
   };
 }
