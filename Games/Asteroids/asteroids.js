@@ -30,8 +30,15 @@ function Asteroids(canvasId){
     if(object instanceof Projectile){
       projectiles.push(object);
     }
-    return self.canvas;
+    // return self.canvas;
   };
+  Asteroids.remove = function(object){
+    var list = null;
+    if(object instanceof Projectile){
+      list = projectiles;
+    }
+    list.splice(list.indexOf(object),1);
+  }
 // Init
   self.load = function(){
     if(canvasId instanceof String || typeof canvasId === 'string'){
@@ -98,7 +105,7 @@ function Asteroids(canvasId){
     document.body.onkeydown = function(event){
       var key = event.key;
       var keyC = event.charCode;
-      console.log('keyC:'+keyC+' key:'+key);
+      // console.log('keyC:'+keyC+' key:'+key);
       //Moving
       if(key == 'w'){
         self.shuttle.isForward = true;
@@ -120,7 +127,7 @@ function Asteroids(canvasId){
     document.body.onkeyup = function(event){
       var key = event.key;
       var keyC = event.charCode;
-      console.log('keyC:'+keyC+' key:'+key);
+      // console.log('keyC:'+keyC+' key:'+key);
       switch(key){
         case 'w': case 's': self.shuttle.isMoving = false; break;//Moving stopped
         case 'a': case 'd': self.shuttle.isRotating = false;break;//Rotating stopped
@@ -153,7 +160,6 @@ function Renderer(gameP){
       var object = objects[i];
       if(object instanceof Projectile){
         drawProjectile(object);
-        console.log('projectile drawn');
       } context.restore();
     }
     context.save(); drawShuttle(game.shuttle); context.restore();
