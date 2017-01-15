@@ -14,7 +14,7 @@ controls.directive('geParagraph',function () {
         controller: function($scope, $element) {
 
         },
-        templateUrl: "/Homepage/components/template/controls/paragraph/ge-paragraph.html",
+        templateUrl: "/components/template/controls/paragraph/ge-paragraph.html",
         transclude: true,
         replace: true
     };
@@ -33,7 +33,7 @@ controls.directive('geLink', function() {
         controller: function($scope, $element) {
 
         },
-        templateUrl: "/Homepage/components/template/controls/ge-link.html",
+        templateUrl: "/components/template/controls/ge-link.html",
         replace: true
     };
 });
@@ -47,7 +47,7 @@ controls.directive('geList', function() {
         controller: function($scope, $element) {
 
         },
-        templateUrl: "/Homepage/components/template/controls/list/ge-list.html",
+        templateUrl: "/components/template/controls/list/ge-list.html",
         transclude: true,
         replace: true
     };
@@ -61,7 +61,7 @@ controls.directive('geListEntry', function() {
         controller: function($scope, $element) {
 
         },
-        templateUrl: "/Homepage/components/template/controls/list/ge-list-entry.html",
+        templateUrl: "/components/template/controls/list/ge-list-entry.html",
         replace: true
     };
 });
@@ -76,7 +76,7 @@ controls.directive('geListEntryTitled', function() {
 
         },
         restrict: 'E',
-        templateUrl: "/Homepage/components/template/controls/list/ge-list-entry-titled.html",
+        templateUrl: "/components/template/controls/list/ge-list-entry-titled.html",
         transclude: true,
         replace: true
     };

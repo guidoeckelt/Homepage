@@ -22,7 +22,7 @@ function LanguageController($http, $scope){
     $scope.languages = new Array();
 
     self.load = function () {
-        $http.get('/Homepage/data/languages.json')
+        $http.get('/data/languages.json')
             .then(function (response) {
                 $scope.languages = response.data.map(function (dto) {
                    return new Language(dto);

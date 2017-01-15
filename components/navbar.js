@@ -28,13 +28,13 @@ function NavbarController($http){
 	var onError = function(response){
 		console.log('error:'+response);
 	};
-	$http.get('/Homepage/data/links.json').then(onSuccess,onError);
+	$http.get('/data/links.json').then(onSuccess,onError);
 }
 
 navbar.controller("NavbarController",["$http",NavbarController]);
 
 navbar.component('geNavbar',{
-	templateUrl: '/Homepage/components/template/ge-navbar.html',
+	templateUrl: '/components/template/ge-navbar.html',
 	controller: NavbarController,
 	bindings: {}
 });
