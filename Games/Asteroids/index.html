@@ -13,20 +13,17 @@
 
   <script>
     window.onload = function(){
-      var canvasId = 'canvas';
+      var canvasContainer = 'root';
 			if(window.frameElement){
 				console.log('iframe');
 				document.body.classList.add('iframe');
 			}
-      console.log('load Asteroids');
-      asteroids = new Asteroids(canvasId);
-      asteroids.load();
+      asteroids = new Asteroids(canvasContainer);
+      asteroids.start();
     };
   </script>
 </head>
 <body>
-  <div id="root">
-    <canvas id="canvas"></canvas>
-  </div>
+  <div id="root"></div>
 </body>
 </html>

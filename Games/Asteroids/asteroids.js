@@ -1,7 +1,8 @@
-function Asteroids(canvasId){
+function Asteroids(canvasContainer){
   var self = this;
 
   self.process = null;
+  self.canvasContainer = null;
   self.canvas = null;
   self.renderer = null;
   Asteroids.mouseX = -1;
@@ -15,7 +16,7 @@ function Asteroids(canvasId){
   self.shuttle = null;
   var projectiles = new Array();
 
-  gameLoop = function(){
+  var gameLoop = function(){
     self.shuttle.move();
     self.shuttle.rotate();
     self.shuttle.shoot();
@@ -39,109 +40,140 @@ function Asteroids(canvasId){
     }
     list.splice(list.indexOf(object),1);
   }
+
 // Init
-  self.load = function(){
-    if(canvasId instanceof String || typeof canvasId === 'string'){
-      self.canvas = document.getElementById(canvasId);
+  var interpreteParameter = function(){
+    if(canvasContainer instanceof String || typeof canvasContainer === 'string'){
+      self.canvasContainer = document.getElementById(canvasContainer);
+    }else if(canvasContainer instanceof HTMLCanvasElement){// || canvasContainer.nodeName.toLowerCase() === 'canvas'){
+      self.canvas = canvasContainer;
+      self.canvasContainer = self.canvas.parent;
+    }else if(canvasContainer instanceof Element || typeof canvasContainer === 'Element'){
+      self.canvasContainer = canvasContainer;
     }else{
-      self.canvas = document.createElement('canvas');
-      self.canvas.id = 'canvas';
-      document.getElementById('root').appendChild(self.canvas);
+      self.canvasContainer = document.body;
     }
+  };
+  var createCanvas = function(){
+    self.canvas = document.createElement('canvas');
+    self.canvas.id = 'canvas';
     self.canvas.style.cursor = 'none';
-    self.canvas.addEventListener('mousemove',function(event){
-      Asteroids.mouseX = event.clientX - self.canvas.getBoundingClientRect().left;
-      Asteroids.mouseY = event.clientY - self.canvas.getBoundingClientRect().top;
-      // console.log(Asteroids.mouseX+' : '+Asteroids.mouseY);
+  };
+  var addEventListenerToCanvas = function(){
+  self.canvas.addEventListener('mousemove',function(event){
+    Asteroids.mouseX = event.clientX - self.canvas.getBoundingClientRect().left;
+    Asteroids.mouseY = event.clientY - self.canvas.getBoundingClientRect().top;
+    // console.log(Asteroids.mouseX+' : '+Asteroids.mouseY);
 
-      var x = self.shuttle.x - (self.shuttle.width/2);
-      var y = self.shuttle.y - (self.shuttle.height/2);
-      var center = {x:x+self.shuttle.gun.x,y:y+self.shuttle.gun.y};
-      // var center = {x:self.canvas.width/2,y:self.canvas.height/2};
-      var lot = {x:center.x,y:center.y-1};
-      var mouse = {x:Asteroids.mouseX,y:Asteroids.mouseY};
-      var v1 = {x:lot.x-center.x,y:lot.y-center.y};
-      var v2 = {x:mouse.x-center.x,y:mouse.y-center.y};
-      var angle = radiansBetweenVectors(v2,v1)+Math.PI;
-      self.shuttle.gun.direction = angle;
-      // console.log(angle);
-    });
-    self.canvas.addEventListener('mousedown',function(event){
-      var buttons = event.buttons;
-      switch(buttons){
-        case 1:                               self.shuttle.gun.isShooting=true;break;//left click
-        case 2: self.shuttle.isShooting=true; break;//right click
-        case 3: self.shuttle.isShooting=true; self.shuttle.gun.isShooting=true; break;//left+right click
-        case 4: break;//middle click
-        case 5:                               self.shuttle.gun.isShooting=true;break;//left+middle click
-        case 6: self.shuttle.isShooting=true; break;//right+middle click
-        case 7: self.shuttle.isShooting=true; self.shuttle.gun.isShooting=true;break;//left+middle+right click
-        default: console.log(buttons); //none
-      }
-      event.preventDefault();
-    });
-    self.canvas.addEventListener('mouseup',function(event){
-      var buttons = event.buttons;
-      switch(buttons){
-        case 1: self.shuttle.isShooting=false; break;//left click
-        case 2:                                self.shuttle.gun.isShooting=false; break;//right click
-        case 3: break;//left+right click
-        case 4: self.shuttle.isShooting=false; self.shuttle.gun.isShooting=false; break;//middle click
-        case 5: self.shuttle.isShooting=false; break;//left+middle click
-        case 6:                                self.shuttle.gun.isShooting=false;break;//right+middle click
-        case 7: break;//left+middle+right click
-        default: self.shuttle.isShooting=false; self.shuttle.gun.isShooting=false; //none
-            console.log(buttons);
-      }
-      event.preventDefault();
-    });
-    self.canvas.addEventListener('click',function(event){
-      event.preventDefault();
-    });
-    self.canvas.addEventListener('contextmenu',function(event){
-      event.preventDefault();
-    });
+    var x = self.shuttle.x - (self.shuttle.width/2);
+    var y = self.shuttle.y - (self.shuttle.height/2);
+    var center = {x:x+self.shuttle.gun.x,y:y+self.shuttle.gun.y};
+    // var center = {x:self.canvas.width/2,y:self.canvas.height/2};
+    var lot = {x:center.x,y:center.y-1};
+    var mouse = {x:Asteroids.mouseX,y:Asteroids.mouseY};
+    var v1 = {x:lot.x-center.x,y:lot.y-center.y};
+    var v2 = {x:mouse.x-center.x,y:mouse.y-center.y};
+    var angle = radiansBetweenVectors(v2,v1)+Math.PI;
+    self.shuttle.gun.direction = angle;
+    // console.log(angle);
+  });
+  self.canvas.addEventListener('mousedown',function(event){
+    var buttons = event.buttons;
+    switch(buttons){
+      case 1:                               self.shuttle.gun.isShooting=true;break;//left click
+      case 2: self.shuttle.isShooting=true; break;//right click
+      case 3: self.shuttle.isShooting=true; self.shuttle.gun.isShooting=true; break;//left+right click
+      case 4: break;//middle click
+      case 5:                               self.shuttle.gun.isShooting=true;break;//left+middle click
+      case 6: self.shuttle.isShooting=true; break;//right+middle click
+      case 7: self.shuttle.isShooting=true; self.shuttle.gun.isShooting=true;break;//left+middle+right click
+      default: console.log(buttons); //none
+    }
+    event.preventDefault();
+  });
+  self.canvas.addEventListener('mouseup',function(event){
+    var buttons = event.buttons;
+    switch(buttons){
+      case 1: self.shuttle.isShooting=false; break;//left click
+      case 2:                                self.shuttle.gun.isShooting=false; break;//right click
+      case 3: break;//left+right click
+      case 4: self.shuttle.isShooting=false; self.shuttle.gun.isShooting=false; break;//middle click
+      case 5: self.shuttle.isShooting=false; break;//left+middle click
+      case 6:                                self.shuttle.gun.isShooting=false;break;//right+middle click
+      case 7: break;//left+middle+right click
+      default: self.shuttle.isShooting=false; self.shuttle.gun.isShooting=false; //none
+          console.log(buttons);
+    }
+    event.preventDefault();
+  });
+  self.canvas.addEventListener('click',function(event){
+    event.preventDefault();
+  });
+  self.canvas.addEventListener('contextmenu',function(event){
+    event.preventDefault();
+  });
 
-    document.body.onkeydown = function(event){
-      var key = event.key;
-      var keyC = event.charCode;
-      // console.log('keyC:'+keyC+' key:'+key);
-      //Moving
-      if(key == 'w'){
-        self.shuttle.isForward = true;
-        self.shuttle.isMoving = true;
-      }else if (key == 's') {
-        self.shuttle.isForward = false;
-        self.shuttle.isMoving = true;
-      }
-      //Rotating
-      if (key == 'd') {
-        self.shuttle.isClockwise = true;
-        self.shuttle.isRotating = true;
-      }else if (key == 'a'){
-        self.shuttle.isClockwise = false;
-        self.shuttle.isRotating = true;
-      }
+  document.body.onkeydown = function(event){
+    var key = event.key;
+    var keyC = event.charCode;
+    // console.log('keyC:'+keyC+' key:'+key);
+    //Moving
+    if(key == 'w'){
+      self.shuttle.isForward = true;
+      self.shuttle.isMoving = true;
+    }else if (key == 's') {
+      self.shuttle.isForward = false;
+      self.shuttle.isMoving = true;
+    }
+    //Rotating
+    if (key == 'd') {
+      self.shuttle.isClockwise = true;
+      self.shuttle.isRotating = true;
+    }else if (key == 'a'){
+      self.shuttle.isClockwise = false;
+      self.shuttle.isRotating = true;
+    }
 
-    };
-    document.body.onkeyup = function(event){
-      var key = event.key;
-      var keyC = event.charCode;
-      // console.log('keyC:'+keyC+' key:'+key);
-      switch(key){
-        case 'w': case 's': self.shuttle.isMoving = false; break;//Moving stopped
-        case 'a': case 'd': self.shuttle.isRotating = false;break;//Rotating stopped
-        default:
-      }
-    };
+  };
+  document.body.onkeyup = function(event){
+    var key = event.key;
+    var keyC = event.charCode;
+    // console.log('keyC:'+keyC+' key:'+key);
+    switch(key){
+      case 'w': case 's': self.shuttle.isMoving = false; break;//Moving stopped
+      case 'a': case 'd': self.shuttle.isRotating = false;break;//Rotating stopped
+      default:
+    }
+  };
 
-    self.renderer = new Renderer(self);
-    self.shuttle = new Shuttle(self.canvas.width/2,self.canvas.height/2);
+  };
+  var appendCanvas = function(){
+    if(self.canvasContainer==document.body&&self.canvasContainer.childNodes.length>0){
+      self.canvasContainer.insertBefore(self.canvas,self.canvasContainer.childNodes[0]);
+    }else{
+      self.canvasContainer.appendChild(self.canvas);
+    }
+  }
 
+  self.start = function(){
     self.process = window.setInterval(function(){ gameLoop(); },20);
     self.renderer.start();
     self.canvas.focus();
   };
+  self.stop = function () {
+    window.clearInterval(self.process);
+    self.renderer.stop();
+  };
+// Constructor
+  console.log('load Asteroids');
+  interpreteParameter();
+  if(null == self.canvas){
+    createCanvas();
+  }
+  addEventListenerToCanvas();
+  appendCanvas();
+  self.renderer = new Renderer(self);
+  self.shuttle = new Shuttle(self.canvas.width/2,self.canvas.height/2);
 }
 
 function Renderer(gameP){
@@ -169,7 +201,7 @@ function Renderer(gameP){
 
   var clear = function(){
     context.clearRect(0,0,self.canvas.width,self.canvas.height);
-  }
+  };
   var background = function(){
     context.fillStyle = '#000';
     context.fillRect(0,0,self.canvas.width,self.canvas.height);
