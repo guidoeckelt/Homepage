@@ -7,11 +7,11 @@
 body{
 	width: 100%;
 	height: 100%;
-	height: 100vh;	
+	height: 100vh;
 }
 
 .header{
-	
+
 }
 
 .navbar-brand.brand-padding{
@@ -20,7 +20,7 @@ body{
 .navbar-brand .brand-img{
 	max-width: 100%;
 	max-height: 100%;
-	
+
 	object-fit: contain;
 }
 .navbar-brand:hover .brand-img,
@@ -53,8 +53,8 @@ body{
 	max-width: 300px;
 }
 .main > iframe{
-	width: 555px;
-	height: 635px;
+	width: 1000px;
+	height: 700px;
 	border:none;
 }
 .transparent{
