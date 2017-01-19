@@ -7,6 +7,8 @@ function Nav(dto){
 	self.url = dto.url;
 	self.tooltip = dto.tooltip;
 	self.source = dto.source;
+	self.external = (dto.source == "_blank");
+	self.links = new Array();
 
 	self.dropdown = (dto.links != null);
 	if(self.dropdown){
@@ -14,7 +16,6 @@ function Nav(dto){
 			return new Nav(element);
 		});
 	}
-	self.external = (dto.source == "_blank");
 }
 function NavbarController($http){
 	var self = this;
@@ -28,7 +29,8 @@ function NavbarController($http){
 	var onError = function(response){
 		console.log('error:'+response);
 	};
-	$http.get('/Homepage/data/links.json').then(onSuccess,onError);
+	// $http.get('/Homepage/data/links.json').then(onSuccess,onError);
+	$http.get('/Homepage/routes/links.php').then(onSuccess,onError);
 }
 
 navbar.controller("NavbarController",["$http",NavbarController]);

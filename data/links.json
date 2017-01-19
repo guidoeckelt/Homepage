@@ -5,10 +5,9 @@
 			{"text":"Fractal Maker","tooltip":"Fraktalbaukasten zum Experimentieren","url":"https://guidoeckelt.github.io/FractalMaker/","source":"_self"}
 		]
 	},
-	{"text":"Games","tooltip":"Verschiedene Spiele zum Ausprobieren","links":
+	{"text":"Games","tooltip":"Verschiedene Spiele zum Ausprobieren","url":"/Homepage/Games/","source":"_self","links":
 		[
 			{"text":"SuperGraVtron","tooltip":"VVVVVV-Minigame clone","url":"https://roederandreas.github.io/SuperGraVtron/","source":"_blank"},
-			{"text":"GameManager","tooltip":"Den GameManager öffnen","url":"/Homepage/Games/","source":"_self"},
 			{"text":"Tetris","tooltip":"Der klassiker Tetris","url":"/Homepage/Games/Tetris/","source":"_self"},
 			{"text":"Snake","tooltip":"Der klassiker Snake","url":"/Homepage/Games/Snake/","source":"_self"},
 			{"text":"Asteroids","tooltip":"Der klassiker Asteroids","url":"/Homepage/Games/Asteroids/","source":"_self"},

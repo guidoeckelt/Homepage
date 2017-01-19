@@ -3,7 +3,7 @@ $fileDir = dirname(__FILE__);
 $baseDir = dirname($fileDir);
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-  $jsonFile = file_get_contents($baseDir.'/data/links.json');
+  $jsonFile = file_get_contents($baseDir.'/data/languages.json');
   // $json = json_decode($jsonFile, true);
   // $jsonString = json_encode($json);
 

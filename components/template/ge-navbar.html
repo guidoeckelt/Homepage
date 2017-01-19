@@ -27,9 +27,26 @@
 						<span class="caret"></span>
 					</a>
 					<ul ng-switch-when="true" class="dropdown-menu">
-						<li ng-repeat="link in nav.links">
-							<ge-link text="{{link.text}}" url="{{link.url}}" tooltip="{{link.tooltip}}"
+						<li ng-repeat="link in nav.links" ng-switch="link.dropdown">
+							<ge-link ng-switch-when="false" text="{{link.text}}" url="{{link.url}}" tooltip="{{link.tooltip}}"
 								 source="{{link.source}}" external="{{link.external}}"></ge-link>
+
+						  <a ng-switch-when="true" title="{{link.tooltip}}" ng-href="{{link.url}}" target="{{link.target}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+		 						<span>{{link.text}}</span>
+		 						<span class="caret"></span>
+		 					</a>
+		 					<ul ng-switch-when="true" class="dropdown-menu">
+		 						<li ng-repeat="subLink in link.links" ng-switch="subLink.dropdown">
+		 							<ge-link ng-switch-when="false" text="{{subLink.text}}" url="{{subLink.url}}" tooltip="{{subLink.tooltip}}"
+		 								 source="{{subLink.source}}" external="{{subLink.external}}"></ge-link>
+									 <a ng-switch-when="true" title="{{subLink.tooltip}}" ng-href="{{subLink.url}}" target="{{subLink.target}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+					 						<span>{{subLink.text}}</span>
+					 						<span class="caret"></span>
+					 					</a>
+		 						</li>
+		 					</ul>
+							<!-- <ge-link text="{{link.text}}" url="{{link.url}}" tooltip="{{link.tooltip}}"
+								 source="{{link.source}}" external="{{link.external}}"></ge-link> -->
 						</li>
 					</ul>
 
