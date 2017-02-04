@@ -11,6 +11,7 @@
   <script src="Projectile.js"></script>
 	<script src="ShuttleGun.js"></script>
 	<script src="Shuttle.js"></script>
+	<script src="Asteroid.js"></script>
 	<script src="../aalib/Renderer.js"></script>
 	<script src="../aalib/Game.js"></script>
   <script src="Asteroids.js"></script>
@@ -22,8 +23,8 @@
 				console.log('iframe');
 				document.body.classList.add('iframe');
 			}
-      asteroids = new Asteroids(canvasContainer);
-      asteroids.start();
+      game = new Asteroids(canvasContainer);
+      game.start();
     };
   </script>
 </head>

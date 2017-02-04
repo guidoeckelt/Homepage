@@ -10,11 +10,14 @@ function Asteroids(canvasContainer){
 
   Asteroids.getCanvas = function(){ return self.canvas; };
   Asteroids.getObjects = function(){
-
-    return projectiles;
+    let objects = new Array();
+    objects = objects.concat(projectiles);
+    objects = objects.concat(asteroids);
+    return objects;
   };
   self.shuttle = null;
   var projectiles = new Array();
+  var asteroids = new Array();
 
   var gameLoop = function(){
     self.shuttle.move();
@@ -30,6 +33,8 @@ function Asteroids(canvasContainer){
   Asteroids.add = function(object){
     if(object instanceof Projectile){
       projectiles.push(object);
+    }else if(object instanceof Asteroid){
+      asteroids.push(object);
     }
     // return self.canvas;
   };
@@ -37,6 +42,8 @@ function Asteroids(canvasContainer){
     let list = null;
     if(object instanceof Projectile){
       list = projectiles;
+    }else if(object instanceof Asteroid){
+      list = asteroids;
     }
     list.splice(list.indexOf(object),1);
   }
@@ -175,6 +182,11 @@ function Asteroids(canvasContainer){
   self.renderer = new Renderer(self);
   var position = new Vector(self.canvas.width/2,self.canvas.height/2);
   self.shuttle = new Shuttle(position);
+  Asteroids.add(new Asteroid(new Vector(50,50),20));
+  Asteroids.add(new Asteroid(new Vector(150,50),20));
+  Asteroids.add(new Asteroid(new Vector(250,50),20));
+  Asteroids.add(new Asteroid(new Vector(350,50),20));
+  Asteroids.add(new Asteroid(new Vector(450,50),20));
 }
 function degreesToRadians(degrees){
   return degrees * (Math.PI/180);

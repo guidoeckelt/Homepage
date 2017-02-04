@@ -26,6 +26,8 @@ class Renderer{
       var object = objects[i];
       if(object instanceof Projectile){
         this._drawProjectile(object);
+      }else if(object instanceof Asteroid){
+        this._drawAsteroid(object);
       }
       this._context.restore();
     }
@@ -90,6 +92,20 @@ class Renderer{
     // this._context.fillRect(gunX,gunY,shuttle.gun.width,shuttle.gun.height);
     this._context.strokeStyle = '#fff';
     this._context.strokeRect(0,0,shuttle.gun.width,shuttle.gun.height);
+  }
+  _drawAsteroid(asteroid){
+    this._context.beginPath();
+    let firstPoint = asteroid.points[0];
+    this._context.moveTo(firstPoint.x, firstPoint.y);
+    for(let i = asteroid.points.length-1;i>0;i--){
+      let point = asteroid.points[i];
+      this._context.lineTo(point.x,point.y);
+    }
+    this._context.closePath();
+    this._context.lineWidth = 2;
+    this._context.strokeStyle = '#fff';
+    this._context.stroke();
+
   }
   _drawProjectile(projectile){
     // context.rotate(projectile.direction);
