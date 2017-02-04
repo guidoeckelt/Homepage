@@ -182,11 +182,11 @@ function Asteroids(canvasContainer){
   self.renderer = new Renderer(self);
   var position = new Vector(self.canvas.width/2,self.canvas.height/2);
   self.shuttle = new Shuttle(position);
-  Asteroids.add(new Asteroid(new Vector(50,50),20));
-  Asteroids.add(new Asteroid(new Vector(150,50),20));
-  Asteroids.add(new Asteroid(new Vector(250,50),20));
-  Asteroids.add(new Asteroid(new Vector(350,50),20));
-  Asteroids.add(new Asteroid(new Vector(450,50),20));
+  Asteroids.add(new Asteroid(new Vector(150,50),50));
+  Asteroids.add(new Asteroid(new Vector(350,50),50));
+  Asteroids.add(new Asteroid(new Vector(550,50),50));
+  Asteroids.add(new Asteroid(new Vector(750,50),50));
+  Asteroids.add(new Asteroid(new Vector(950,50),40));
 }
 function degreesToRadians(degrees){
   return degrees * (Math.PI/180);
