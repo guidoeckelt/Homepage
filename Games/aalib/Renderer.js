@@ -1,7 +1,7 @@
 class Renderer{
   constructor(game){
     this._game = game;
-    this._canvas = game.canvas;
+    this._canvas = game._canvas;
     this._context = canvas.getContext('2d');
     this._drawProcess = null;
     this._delay = 5;
@@ -17,7 +17,7 @@ class Renderer{
   }
 
   _draw(){
-    var objects = Asteroids.getObjects();
+    var objects = Asteroids.getGameObjects();
 
     this._clear();
     this._context.save(); this._background(); this._context.restore();
@@ -31,10 +31,11 @@ class Renderer{
       }
       this._context.restore();
     }
-    this._context.save(); this._drawShuttle(this._game.shuttle); this._context.restore();
+    this._context.save(); this._drawShuttle(this._game._shuttle); this._context.restore();
     this._context.save(); this._pointer(); this._context.restore();
     console.log('draw finished');
   }
+
   _clear(){
     this._context.clearRect(0,0,this._canvas.width,this._canvas.height);
   }

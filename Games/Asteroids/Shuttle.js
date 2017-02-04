@@ -11,7 +11,7 @@ class Shuttle{
 
     this.isRotating = false;
     this.isClockwise = true;
-    this.rotateFactor = 50;
+    this.rotateFactor = 100;
 
     this.isShooting = false;
     this.isReloading = false;
