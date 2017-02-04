@@ -60,10 +60,10 @@ class Renderer{
     this._context.translate(shuttle.position.x,shuttle.position.y);
     this._context.rotate(shuttle.direction - Math.PI/2);
     this._context.translate(offsetX,offsetY);
-    this._context.beginPath();
-    this._context.moveTo(0,0+shuttle.height);//left bottom
-    this._context.lineTo(0+shuttle.width,0+shuttle.height);//right bottom
-    this._context.lineTo(0+(shuttle.width/2),0);//middle top
+    this._context.beginPath();               //                                    3
+    this._context.moveTo(0,0+shuttle.height);//left bottom 1              offSet.  .  .
+    this._context.lineTo(0+shuttle.width,0+shuttle.height);//right bottom 2        .<--position
+    this._context.lineTo(0+(shuttle.width/2),0);//middle top 3                 1.     .2
     this._context.closePath();
 
     this._context.fillStyle = null;
@@ -83,12 +83,14 @@ class Renderer{
     this._context.strokeStyle = '#fff';
     this._context.stroke();
 
-    if(shuttle.gun.direction>0){
-      this._context.translate(0-(shuttle.gun.width/2),0);
-    }else{
-      this._context.translate(0+(shuttle.gun.width/2),0);
-    }
-    this._context.rotate(shuttle.gun.direction);
+    // if(shuttle.gun.direction>0){
+    //   this._context.translate(0-(shuttle.gun.width/2),0);
+    // }else{
+    //   this._context.translate(0+(shuttle.gun.width/2),0);
+    // }
+    this._context.rotate(-(shuttle.direction));
+    this._context.translate(0,0);
+    this._context.rotate(shuttle.gun.direction+Math.PI);
     this._context.fillStyle = null;
     // this._context.fillRect(gunX,gunY,shuttle.gun.width,shuttle.gun.height);
     this._context.strokeStyle = '#fff';

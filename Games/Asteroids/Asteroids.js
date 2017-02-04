@@ -56,7 +56,7 @@ class Asteroids{
       var mouse = new Vector(Asteroids.mouseX,Asteroids.mouseY);
       var v1 = new Vector(lot.x-center.x,lot.y-center.y);
       var v2 = new Vector(mouse.x-center.x,mouse.y-center.y);
-      var angle = Vector.radiansBetweenVectors(v2,v1);
+      var angle = Vector.radiansBetweenVectors(v2,v1)+Math.PI/2;
       this._shuttle.gun.direction = angle;
       // console.log(angle);
     }).bind(this));

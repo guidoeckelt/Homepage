@@ -57,6 +57,7 @@ class Shuttle{
     var factor = this.rotateFactor;//this.speed;
     var offset = this.isClockwise?Math.PI/factor:Math.PI/(-1*factor);
     this.direction += offset;
+    // this.gun.direction += offset;
     // console.log('new dir '+this.direction);
   }
   shoot(){
