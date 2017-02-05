@@ -6,34 +6,41 @@ class Renderer{
     this._drawProcess = null;
     this._delay = 5;
     this._draw = this._draw.bind(this);
+    this._drawLoop = this._drawLoop.bind(this);
   }
 
   start(){
-    this._draw();
-    this._drawProcess = window.setInterval(this._draw, this._delay);
+    this._drawLoop();
+    this._drawProcess = window.setInterval(this._drawLoop, this._delay);
   }
   stop(){
     window.clearInterval(this._drawProcess);
   }
-
-  _draw(){
+  _drawLoop(){
     var objects = Asteroids.getGameObjects();
-
     this._clear();
-    this._context.save(); this._background(); this._context.restore();
+    this._draw('background');
     for(var i=objects.length-1;i>=0;i--){
-      this._context.save();
       var object = objects[i];
+      this._draw(object);
+    }
+    this._draw('pointer');
+    console.log('drawLoop finished');
+  }
+  _draw(object){
+      this._context.save();
       if(object instanceof Projectile){
         this._drawProjectile(object);
       }else if(object instanceof Asteroid){
         this._drawAsteroid(object);
+      }else if(object instanceof Shuttle){
+        this._drawShuttle(object);
+      }else if(object == 'pointer'){
+        this._pointer();
+      }else if(object == 'background'){
+        this._background();
       }
       this._context.restore();
-    }
-    this._context.save(); this._drawShuttle(this._game._shuttle); this._context.restore();
-    this._context.save(); this._pointer(); this._context.restore();
-    console.log('draw finished');
   }
 
   _clear(){
@@ -97,6 +104,7 @@ class Renderer{
     this._context.strokeRect(0,0,shuttle.gun.width,shuttle.gun.height);
   }
   _drawAsteroid(asteroid){
+    this._context.translate(asteroid.position.x, asteroid.position.y);
     this._context.beginPath();
     let firstPoint = asteroid.points[0];
     this._context.moveTo(firstPoint.x, firstPoint.y);

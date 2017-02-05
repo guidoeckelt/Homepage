@@ -16,8 +16,6 @@ class Asteroids{
     this._process = null;
     this._renderer = new Renderer(this);
     this._gameObjects = new Array();
-    this._projectiles = new Array();
-    this._asteroids = new Array();
     this._createAndAddInitialObjects();
   }
 // Game - Private Functions
@@ -147,20 +145,23 @@ class Asteroids{
   _createAndAddInitialObjects(){
     var position = new Vector(this._canvas.width/2,this._canvas.height/2);
     this._shuttle = new Shuttle(position);
-    Asteroids.add(new Asteroid(new Vector(150,50),50));
-    Asteroids.add(new Asteroid(new Vector(350,50),50));
-    Asteroids.add(new Asteroid(new Vector(550,50),50));
-    Asteroids.add(new Asteroid(new Vector(750,50),50));
-    Asteroids.add(new Asteroid(new Vector(950,50),40));
+    Asteroids.add(this._shuttle);
+    for(let i=1; i<=5; i++){
+      var x = randomNumberBetween(0,this._canvas.width);
+      var y = randomNumberBetween(0,this._canvas.height);
+      var size = randomNumberBetween(40,60);
+      Asteroids.add(new Asteroid(new Vector(x,y),size));
+    }
   }
   _gameLoop(){
-    this._shuttle.move();
-    this._shuttle.rotate();
-    this._shuttle.shoot();
-    this._shuttle.gun.shoot();
-    for(var i=this._projectiles.length-1;i>=0;i--){
-      var projectile = this._projectiles[i];
-      projectile.move();
+    for(let i=this._gameObjects.length-1;i>=0;i--){
+      var gameObject = this._gameObjects[i];
+      gameObject.move();
+      if(gameObject instanceof Shuttle){
+        gameObject.rotate();
+        gameObject.shoot();
+        gameObject.gun.shoot();
+      }
     }
   }
 
@@ -177,29 +178,21 @@ class Asteroids{
 
 // Game - Static Functions
   static add(gameObject){
-    if(gameObject instanceof Projectile){
-      this._projectiles.push(gameObject);
-    }else if(gameObject instanceof Asteroid){
-      this._asteroids.push(gameObject);
+    if(!gameObject instanceof GameObject){
+
     }
+    this._gameObjects.push(gameObject);
   }
   static remove(gameObject){
-    let list = null;
-    if(gameObject instanceof Projectile){
-      list = this._projectiles;
-    }else if(gameObject instanceof Asteroid){
-      list = this._asteroids;
+    if(!gameObject instanceof GameObject){
+
     }
+    let list = this._gameObjects;
     list.splice(list.indexOf(gameObject),1);
   }
 
   static getCanvas(){ return this._canvas; };
-  static getGameObjects(){
-    let objects = new Array();
-    objects = objects.concat(this._projectiles);
-    objects = objects.concat(this._asteroids);
-    return objects;
-  }
+  static getGameObjects(){ return this._gameObjects; }
   static getMouseVector(){ return new Vector(this._mouseX, this._mouseY); }
 }
 function degreesToRadians(degrees){
@@ -207,6 +200,9 @@ function degreesToRadians(degrees){
 }
 function radiansToDegrees(radians){
   return radians * (180/Math.PI);
+}
+function randomNumberBetween(min, max){
+  return Math.random() * (max - min) + min;
 }
 // function find_angle(A,B,C) {
 //     var AB = Math.sqrt(Math.pow(B.x-A.x,2)+ Math.pow(B.y-A.y,2));
