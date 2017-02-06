@@ -67,8 +67,20 @@ class Renderer{
     this._context.translate(shuttle.position.x,shuttle.position.y);
     this._context.rotate(shuttle.direction - Math.PI/2);
     this._context.translate(offsetX,offsetY);
+    // outline circle
+    this._context.beginPath();
+    this._context.arc(-offsetX,-offsetY,shuttle.width,0,2*Math.PI);
+    this._context.closePath();
+    this._context.lineWidth = 1;
+    this._context.strokeStyle = '#fff';
+    this._context.stroke();
+    // //original rectangle
+    // this._context.strokeStyle = '#fff';
+    // this._context.lineWidth = 1;
+    // this._context.strokeRect(0,0,shuttle.width,shuttle.height);
+
     this._context.beginPath();               //                                    3
-    this._context.moveTo(0,0+shuttle.height);//left bottom 1              offSet.  .  .
+    this._context.moveTo(0,0+shuttle.height);//left bottom 1            offSet->.  .  .
     this._context.lineTo(0+shuttle.width,0+shuttle.height);//right bottom 2        .<--position
     this._context.lineTo(0+(shuttle.width/2),0);//middle top 3                 1.     .2
     this._context.closePath();
@@ -83,7 +95,7 @@ class Renderer{
     //gun
     this._context.translate(shuttle.gun.position.x,shuttle.gun.position.y);
     this._context.beginPath();
-    this._context.arc(0,0,3,0,2*Math.PI);
+    this._context.arc(0,0,4,0,2*Math.PI);
     this._context.closePath();
     this._context.fillStyle = '#000';
     this._context.fill();
@@ -98,13 +110,21 @@ class Renderer{
     this._context.rotate(-(shuttle.direction));
     this._context.translate(0,0);
     this._context.rotate(shuttle.gun.direction+Math.PI);
-    this._context.fillStyle = null;
-    // this._context.fillRect(gunX,gunY,shuttle.gun.width,shuttle.gun.height);
+    this._context.fillStyle = '#fff';
+    this._context.fillRect(0,0,shuttle.gun.width,shuttle.gun.height);
     this._context.strokeStyle = '#fff';
     this._context.strokeRect(0,0,shuttle.gun.width,shuttle.gun.height);
   }
   _drawAsteroid(asteroid){
     this._context.translate(asteroid.position.x, asteroid.position.y);
+    // outline original circle
+    this._context.beginPath();
+    this._context.arc(0,0,asteroid.size,0,2*Math.PI);
+    this._context.closePath();
+    this._context.lineWidth = 1;
+    this._context.strokeStyle = '#fff';
+    this._context.stroke();
+
     this._context.beginPath();
     let firstPoint = asteroid.points[0];
     this._context.moveTo(firstPoint.x, firstPoint.y);

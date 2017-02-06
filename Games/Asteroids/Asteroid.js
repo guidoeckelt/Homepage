@@ -14,14 +14,14 @@ class Asteroid{
   _generatePoints(){
     let array = new Array();
     let increment = Math.PI*2/this.pointNumber;
-    let min = -this.size/2;
-    let max = this.size/3;
+    let min = -this.size/4;
+    let max = this.size/4;
     for(let i = -Math.PI;i<Math.PI;i+=increment){
       let x  = (this.size * Math.cos(i));
       let y  = (this.size * Math.sin(i));
       let randomizer = randomNumberBetween(min, max);
-      let vector = Vector.directionVectorFromAngle(i)
-                      .multiplyByScalar(randomizer);
+      let vector = Vector.directionVectorFromAngle(i);
+      vector = vector.multiplyByScalar(randomizer);
       array.push(new Vector(x, y).add(vector));
     }
     return array;
