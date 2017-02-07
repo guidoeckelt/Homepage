@@ -155,14 +155,57 @@ class Asteroids{
   }
   _gameLoop(){
     for(let i=this._gameObjects.length-1;i>=0;i--){
-      var gameObject = this._gameObjects[i];
+      let gameObject = this._gameObjects[i];
       gameObject.move();
       if(gameObject instanceof Shuttle){
         gameObject.rotate();
         gameObject.shoot();
         gameObject.gun.shoot();
       }
+      let collidedObject = this._detectCollision(gameObject);
+      if(collidedObject!==null){
+        this._decideCollisionResult(gameObject, collidedObject);
+      }
     }
+  }
+
+  _detectCollision(gameObject){
+    let otherGameObjectList = this._otherGameObjectList(gameObject);
+    for(let ii=otherGameObjectList.length-1; ii>=0; ii--){
+      let otherGameObject = otherGameObjectList[ii];
+      let isInterference = Collision.doesObjectsInterfere(gameObject, otherGameObject);
+      if(isInterference===true){
+        return otherGameObject;
+      }
+    }
+    return null;
+  }
+  _decideCollisionResult(gameObject, gameObject2){
+    let array = [gameObject, gameObject2];
+    for(let i=array.length-1; i>=0; i--){
+      let object = array[i];
+      if(object instanceof Projectile){
+        Asteroids.remove(object);
+      }else if (object instanceof Asteroid) {
+        object.hit();
+      }else if (object instanceof Shuttle) {
+        object.hit();
+      }
+    }
+    // console.log(typeof gameObject +" interferes "+ typeof gameObject2);
+  }
+  _otherGameObjectList(gameObject){
+    let list = Array.from(this._gameObjects);
+    list.splice(list.indexOf(gameObject), 1);
+    if(gameObject instanceof Asteroid){
+      list = list.filter(function(value){ return !(value instanceof Asteroid); });
+    }else if (gameObject instanceof Projectile
+      || gameObject instanceof Shuttle){
+      list = list.filter(function(value){ return !(value instanceof Shuttle); });
+      list = list.filter(function(value){ return !(value instanceof Projectile); });
+    }
+    // console.dir(list);
+    return list;
   }
 
 // Game - Public Functions

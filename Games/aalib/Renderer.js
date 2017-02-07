@@ -16,6 +16,7 @@ class Renderer{
   stop(){
     window.clearInterval(this._drawProcess);
   }
+  
   _drawLoop(){
     var objects = Asteroids.getGameObjects();
     this._clear();

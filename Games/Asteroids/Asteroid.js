@@ -49,4 +49,8 @@ class Asteroid{
     // console.log('asteroid new position is '+this.position.x+':'+this.position.y);
   }
 
+  hit(){
+    // console.dir(this);
+
+  }
 }

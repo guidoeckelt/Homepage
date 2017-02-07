@@ -80,4 +80,9 @@ class Shuttle{
   reloading(){
     this.isReloading = false;
   }
+
+  hit(){
+    // console.dir(this);
+
+  }
 }
