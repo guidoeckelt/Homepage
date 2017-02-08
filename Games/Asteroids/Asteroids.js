@@ -238,6 +238,7 @@ class Asteroids{
   static getGameObjects(){ return this._gameObjects; }
   static getMouseVector(){ return new Vector(this._mouseX, this._mouseY); }
 }
+
 function degreesToRadians(degrees){
   return degrees * (Math.PI/180);
 }

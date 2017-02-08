@@ -7,6 +7,7 @@ class Projectile{
     this.direction = direction;//heading angle in radians
     this.speed = 10;
   }
+
   move(){
     var oldPosition = this.postion;
     var directionVector = Vector.directionVectorFromAngle(this.direction);
@@ -27,4 +28,5 @@ class Projectile{
     }
     // console.log('projectile new position is '+this.position.x+':'+this.position.y);
   }
+
 }
