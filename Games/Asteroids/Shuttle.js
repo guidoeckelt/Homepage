@@ -65,6 +65,7 @@ class Shuttle{
     // this.gun.direction += offset;
     // console.log('new dir '+this.direction);
   }
+
   shoot(){
     if(!this.isShooting){
       return;
