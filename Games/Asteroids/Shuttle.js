@@ -1,5 +1,6 @@
 class Shuttle{
   constructor(position){
+    this._initialPosition = position;
     this.position = position;
     this.width = 30;
     this.height = 50;
@@ -18,6 +19,10 @@ class Shuttle{
     this.reloadTimeInMs = 100;
     this.reloading = this.reloading.bind(this);
 
+    this._maxLifes = 3;
+    this.lifes = this._maxLifes;
+    this._maxHp = 100;
+    this.hp = this._maxHp;
     var gunX = this.width/2;
     var gunY = this.height*3/4;
     this.gun = new ShuttleGun(new Vector(gunX,gunY),this.direction);
@@ -80,9 +85,29 @@ class Shuttle{
   reloading(){
     this.isReloading = false;
   }
-
-  hit(){
+  hit(dmg){
     // console.dir(this);
-
+    this._takeDamage(dmg);
   }
+
+  _takeDamage(dmg){
+    if(this.hp > dmg){
+      this.hp -= dmg;
+      console.log("shuttle hp "+this.hp+"/"+this._maxHp+" "+dmg+" damage");
+    }else{
+      this.hp = this._maxHp;
+      if(this.lifes>0){
+        this.lifes--;
+        console.log("shuttle lifes "+this.lifes+"/"+this._maxLifes);
+      }else{
+        console.log("shuttle is alreay down buddy");
+      }
+      this._respawn();
+    }
+  }
+  _respawn(){
+    this.position = this._initialPosition;
+    console.log("shuttle respawned  at "+this.position+"");
+  }
+
 }

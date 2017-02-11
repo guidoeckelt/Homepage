@@ -10,6 +10,9 @@ class Asteroid{
     // this.direction = Math.PI*3/2;//heading angle in radians
     this.direction = randomNumberBetween(0,Math.PI*2);//heading angle in radians
     this.speed = 2;
+
+    this._maxHp = 100;
+    this.hp = this._maxHp;
   }
   _generatePoints(){
     let array = new Array();
@@ -48,9 +51,30 @@ class Asteroid{
     }
     // console.log('asteroid new position is '+this.position.x+':'+this.position.y);
   }
-
-  hit(){
+  hit(dmg){
     // console.dir(this);
-
+    this._takeDamage(dmg);
   }
+
+  _takeDamage(dmg){
+    if(this.hp > dmg){
+      this.hp -= dmg;
+      console.log("shuttle hp "+this.hp+"/"+this._maxHp+" "+dmg+" damage");
+    }else{
+      this._BOOOM();
+    }
+  }
+  _BOOOM(){
+    let amount = randomNumberBetween(2,3);
+    let newSize = this.size - (this.size/2);
+    if(newSize > 10){
+      for(let i=-1; i<=amount-1; i++){
+        let x = this.position.x + (i*newSize*2);
+        let y = this.position.y + (i*newSize*2);
+        Asteroids.add(new Asteroid(new Vector(x, y), newSize));
+      }
+    }
+    Asteroids.remove(this);
+  }
+
 }

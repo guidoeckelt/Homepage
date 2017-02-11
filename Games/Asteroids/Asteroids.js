@@ -6,6 +6,7 @@ class Asteroids{
     this._canvas = null;
     this._mouseX = -1;
     this._mouseY = -1;
+    this._asteroidCounter = 0;
     Asteroids.mouseX = -1;
     Asteroids.mouseY = -1;
     this._interpreteParameter(canvasContainer);
@@ -14,11 +15,19 @@ class Asteroids{
     this._appendCanvas();
 
     this._process = null;
+    this._interface = this._initiateInterface();
     this._renderer = new Renderer(this);
     this._gameObjects = new Array();
     this._createAndAddInitialObjects();
   }
 // Game - Private Functions
+  _bindContextToStatics(){
+    Asteroids.add = Asteroids.add.bind(this);
+    Asteroids.remove = Asteroids.remove.bind(this);
+    Asteroids.getCanvas = Asteroids.getCanvas.bind(this);
+    Asteroids.getMouseVector = Asteroids.getMouseVector.bind(this);
+    Asteroids.getGameObjects = Asteroids.getGameObjects.bind(this);
+  }
   _interpreteParameter(canvasContainer){
     if(canvasContainer instanceof String || typeof canvasContainer === 'string'){
       this._canvasContainer = document.getElementById(canvasContainer);
@@ -51,7 +60,7 @@ class Asteroids{
       var center = this._shuttle.gun.position.add(new Vector(x, y));
       // var center = {x:self.canvas.width/2,y:self.canvas.height/2};
       var lot = new Vector(center.x, center.y-1);
-      var mouse = new Vector(Asteroids.mouseX,Asteroids.mouseY);
+      var mouse = Asteroids.getMouseVector();
       var v1 = new Vector(lot.x-center.x,lot.y-center.y);
       var v2 = new Vector(mouse.x-center.x,mouse.y-center.y);
       var angle = Vector.radiansBetweenVectors(v2,v1)+Math.PI/2;
@@ -134,28 +143,33 @@ class Asteroids{
       this._canvasContainer.appendChild(this._canvas);
     }
   }
+  _initiateInterface(){
 
-  _bindContextToStatics(){
-    Asteroids.add = Asteroids.add.bind(this);
-    Asteroids.remove = Asteroids.remove.bind(this);
-    Asteroids.getCanvas = Asteroids.getCanvas.bind(this);
-    Asteroids.getMouseVector = Asteroids.getMouseVector.bind(this);
-    Asteroids.getGameObjects = Asteroids.getGameObjects.bind(this);
   }
   _createAndAddInitialObjects(){
+    this._createAndAddShuttle();
+    for(let i=1; i<=5; i++){
+      this._createAndAddRandomAsteroid();
+    }
+  }
+  _createAndAddShuttle(){
     var position = new Vector(this._canvas.width/2,this._canvas.height/2);
     this._shuttle = new Shuttle(position);
     Asteroids.add(this._shuttle);
-    for(let i=1; i<=5; i++){
-      var x = randomNumberBetween(0,this._canvas.width);
-      var y = randomNumberBetween(0,this._canvas.height);
-      var size = randomNumberBetween(40,60);
-      Asteroids.add(new Asteroid(new Vector(x,y),size));
-    }
   }
+  _createAndAddRandomAsteroid(){
+    let x = randomNumberBetween(0,this._canvas.width);
+    let y = randomNumberBetween(0,this._canvas.height);
+    let size = randomNumberBetween(40,60);
+    Asteroids.add(new Asteroid(new Vector(x,y),size));
+  }
+
   _gameLoop(){
     for(let i=this._gameObjects.length-1;i>=0;i--){
       let gameObject = this._gameObjects[i];
+      if(gameObject===null || gameObject===undefined){
+        continue;
+      }
       gameObject.move();
       if(gameObject instanceof Shuttle){
         gameObject.rotate();
@@ -167,8 +181,8 @@ class Asteroids{
         this._decideCollisionResult(gameObject, collidedObject);
       }
     }
+    this._createAndAddMoreBigAsteroids();
   }
-
   _detectCollision(gameObject){
     let otherGameObjectList = this._otherGameObjectList(gameObject);
     for(let ii=otherGameObjectList.length-1; ii>=0; ii--){
@@ -181,28 +195,33 @@ class Asteroids{
     return null;
   }
   _decideCollisionResult(gameObject, gameObject2){
-    let array = [gameObject, gameObject2];
-    for(let i=array.length-1; i>=0; i--){
-      let object = array[i];
-      if(object instanceof Projectile){
-        Asteroids.remove(object);
-      }else if (object instanceof Asteroid) {
-        object.hit();
-      }else if (object instanceof Shuttle) {
-        object.hit();
-      }
+    if(gameObject instanceof Projectile && gameObject2 instanceof Asteroid){
+      Asteroids.remove(gameObject);
+      gameObject2.hit(gameObject.damage);
+    }else if(gameObject instanceof Asteroid && gameObject2 instanceof Projectile){
+      gameObject.hit(gameObject2.damage);
+      Asteroids.remove(gameObject2);
+    }else if(gameObject instanceof Shuttle && gameObject2 instanceof Asteroid){
+      let dmg = gameObject2.size;
+      gameObject.hit(dmg);
+    }else if(gameObject instanceof Asteroid && gameObject2 instanceof Shuttle){
+      let dmg = gameObject.size;
+      gameObject2.hit(dmg);
     }
     // console.log(typeof gameObject +" interferes "+ typeof gameObject2);
+  }
+  _createAndAddMoreBigAsteroids(){
+    if(this._asteroidCounter < 3){
+      this._createAndAddRandomAsteroid();
+    }
   }
   _otherGameObjectList(gameObject){
     let list = Array.from(this._gameObjects);
     list.splice(list.indexOf(gameObject), 1);
     if(gameObject instanceof Asteroid){
       list = list.filter(function(value){ return !(value instanceof Asteroid); });
-    }else if (gameObject instanceof Projectile
-      || gameObject instanceof Shuttle){
-      list = list.filter(function(value){ return !(value instanceof Shuttle); });
-      list = list.filter(function(value){ return !(value instanceof Projectile); });
+    }else if (!(gameObject instanceof Asteroid)){
+      list = list.filter(function(value){ return value instanceof Asteroid; });
     }
     // console.dir(list);
     return list;
@@ -224,11 +243,17 @@ class Asteroids{
     if(!gameObject instanceof GameObject){
 
     }
+    if(gameObject instanceof Asteroid){
+      this._asteroidCounter++;
+    }
     this._gameObjects.push(gameObject);
   }
   static remove(gameObject){
     if(!gameObject instanceof GameObject){
 
+    }
+    if(gameObject instanceof Asteroid){
+      this._asteroidCounter--;
     }
     let list = this._gameObjects;
     list.splice(list.indexOf(gameObject),1);
