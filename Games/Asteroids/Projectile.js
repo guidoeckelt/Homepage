@@ -30,4 +30,5 @@ class Projectile{
     }
     // console.log('projectile new position is '+this.position.x+':'+this.position.y);
   }
+
 }

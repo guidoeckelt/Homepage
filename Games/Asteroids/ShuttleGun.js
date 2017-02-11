@@ -12,7 +12,7 @@ class ShuttleGun{
     this.reloading = this.reloading.bind(this);
     this.shuttle = null;
   }
-  
+
   shoot(){
     if(!this.isShooting){
       return;

@@ -262,6 +262,7 @@ class Asteroids{
   static getCanvas(){ return this._canvas; };
   static getGameObjects(){ return this._gameObjects; }
   static getMouseVector(){ return new Vector(this._mouseX, this._mouseY); }
+  
 }
 
 function degreesToRadians(degrees){
