@@ -99,16 +99,15 @@ class Shuttle{
       this.hp = this._maxHp;
       if(this.lifes>0){
         this.lifes--;
-        console.log("shuttle lifes "+this.lifes+"/"+this._maxLifes);
       }else{
-        console.log("shuttle is alreay down buddy");
+        // console.log("shuttle is alreay down buddy");
       }
       this._respawn();
     }
   }
   _respawn(){
     this.position = this._initialPosition;
-    console.log("shuttle respawned  at "+this.position+"");
+    console.log("shuttle("+this.lifes+"/"+this._maxLifes+") respawned at "+this.position.toString());
   }
 
 }

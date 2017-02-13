@@ -30,4 +30,5 @@ class Collision{
     }
     return {start : start, end : end};
   }
+
 }
