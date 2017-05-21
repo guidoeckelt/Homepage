@@ -1,0 +1,43 @@
+{% extends 'lib/base.html.twig' %}
+
+{% block Description %}Homepage from Charaktar1{% endblock %}
+
+{% block Title %}Homepage - Charaktar{% endblock %}
+
+{% block Styles %}
+    <!-- Font Awesome v4.7.0-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+
+    <link href="/Homepage/static/basic.css" rel="stylesheet"/>
+    <link href="/Homepage/static/components/templates/controls/controls.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block Scripts %}
+    <!-- AngularJS v1.5.8 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+    <script src="/Homepage/static/components/controls.js"></script>
+    <script src="/Homepage/static/components/header.js"></script>
+    <script src="/Homepage/static/StartPage.js"></script>
+{% endblock %}
+
+{% block MainContent %}
+    <div ng-app="main-app">
+        <header class="header">
+            <ge-header></ge-header>
+        </header>
+        <main class="main">
+            <!-- <iframe src='/Homepgamesames/BattleArena/'></iframe> -->
+            <!-- <iframe src='/Homepgamesames/Asteroids/'></iframe> -->
+            <!-- <iframe src='/Homepgamesames/Tetris/'></iframe> -->
+            <!-- <iframe src='/Homepgamesames/Snake/'></iframe> -->
+        </main>
+        <ge-footer>
+
+        </ge-footer>
+    </div>
+{% endblock %}
+
+{% block AfterScripts %}
+
+{% endblock %}

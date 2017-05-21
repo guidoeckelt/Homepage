@@ -1,0 +1,69 @@
+* {
+
+    --max-image-height: 500px;
+    --list-button-width: 40px;
+}
+
+.gallery {
+    width: 100%;
+    height: 100%;
+
+    padding: 50px 40px;
+}
+
+.gallery .image-list {
+    width: 100%;
+
+    padding: 20px 40px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: flex-start;
+
+}
+
+.gallery .image-list .image {
+    /*max-width: calc(var(--max-image-height) * 16 / 9);*/
+    /*max-height: var(--max-image-height);*/
+
+    margin-right: 20px;
+}
+
+.gallery .image-list .image .image-tag {
+    width: 100%;
+    height: 100%;
+}
+
+.gallery .image-list .image:hover .image-tag {
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    box-shadow: 10px 10px #000;
+    transform: scale(1.005);
+}
+
+.gallery .hud {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.gallery .list-button {
+    width: var(--list-button-width);
+    height: 60px;
+    background: #605e5e;
+
+    position: absolute;
+    top: calc(50% - var(--list-button-width));
+}
+
+.gallery .list-button.next {
+    right: 0;
+
+}
+
+.gallery .list-button.previous {
+    left: 0;
+}

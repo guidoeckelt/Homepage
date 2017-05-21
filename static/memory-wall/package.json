@@ -1,0 +1,39 @@
+{
+  "name": "memory-wall",
+  "version": "1.0.0",
+  "description": "Memory Wall App",
+  "main": "src/index.js",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "jquery": "^3.2.1",
+    "sammy": "^0.7.6",
+    "jsx-loader": "^0.13.2",
+    "babel-core": "6.4.0",
+    "babel-loader": "6.2.1",
+    "style-loader": "^0.17.0",
+    "css-loader": "^0.26.1",
+    "webpack": "^2.2.1",
+    "uglifyjs-webpack-plugin": "^0.4.3"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^2.3.0",
+    "html-webpack-plugin": "^2.28.0",
+    "source-map-loader": "^0.1.6"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.build.config.js --progress",
+    "watch": "webpack --config webpack.watch.config.js --progress",
+    "watch server": "webpack --config webpack.watch-dev-server.config.js",
+    "test": "webpack --config webpack.test.config.js",
+    "prod": "webpack --config webpack.prod.config.js --progress"
+  },
+  "keywords": [
+    "React",
+    "Webpack",
+    "Webpack-Dev-Server",
+    "Lint",
+    "Babel"
+  ],
+  "author": "Guido Eckelt"
+}
