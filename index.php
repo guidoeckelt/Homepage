@@ -81,7 +81,7 @@ $app->get('/AboutTheDeveloper[/]', function (Request $request, Response $respons
     try {
         /** @var Twig_Environment $twig */
         $twig = $this->twig;
-        $response = $twig->render('./AboutTheDeveloper.html');
+        $response = $twig->render('./AboutTheDeveloper.html.twig');
         /** @var \Monolog\Logger $logger */
         $logger = $this->logger;
         $logger->debug(pageRequested, ['name' => 'AboutTheDeveloper']);
@@ -94,7 +94,7 @@ $app->get('/Impressum[/]', function (Request $request, Response $response, $args
     try {
         /** @var Twig_Environment $twig */
         $twig = $this->twig;
-        $response = $twig->render('./Impressum.html');
+        $response = $twig->render('./Impressum.html.twig');
         /** @var \Monolog\Logger $logger */
         $logger = $this->logger;
         $logger->debug(pageRequested, ['name' => 'Impressum']);

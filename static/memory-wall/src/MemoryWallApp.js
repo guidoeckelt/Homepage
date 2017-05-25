@@ -22,7 +22,7 @@ class MemoryWallApp extends React.Component {
             this.get(url_pre_2 + '/moment/:moment/image/:image', function () {// context is a Sammy.EventContext
                 let moment_id = this.params.moment;
                 let image_id = this.params.image;
-                MemoryWallApp.show('moment', moment_id, image_id);
+                self.show('moment', moment_id, image_id);
             });
             this.get(url_pre_2 + 'test', function () {// context is a Sammy.EventContext
                 // this.$element(); //Sammy($element, function...
@@ -36,7 +36,7 @@ class MemoryWallApp extends React.Component {
         }).run();
     }
 
-    static show(entity_type, entity_id, image_id) {
+    show(entity_type, entity_id, image_id) {
         jq.get(api_pre + 'memorywall/' + entity_type + '/' + entity_id + '/image/' + image_id, function (data) {
             console.log(data);
         });

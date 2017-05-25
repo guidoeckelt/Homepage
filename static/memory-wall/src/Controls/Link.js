@@ -18,6 +18,11 @@ class LinkEntity {
         this.source = dto.source;
     }
 
+
+    get isExternal() {
+        // console.log(this.source);
+        return this.source === '_blank';
+    }
 }
 
 class Link extends React.Component {
@@ -28,13 +33,25 @@ class Link extends React.Component {
     }
 
     render() {
-        let linkText = ce('span', {key: '', className: 'link-text'}, this.props.entity.text);
+        let linkText = ce('span', {
+            key: this.props.entity.text + '-text',
+            className: 'link-text'
+        }, this.props.entity.text);
+        let body = [linkText];
+        if (this.props.entity.isExternal) {
+            let icon = ce('i', {
+                key: this.props.entity.text + '-external-icon',
+                className: 'fa fa-external-link',
+                'aria-hidden': true
+            }, null);
+            body.push(icon);
+        }
         return ce('a'
             , {
-                key: '', className: 'link', href: this.props.entity.url
+                key: this.props.entity.text + '-a', className: 'link', href: this.props.entity.url
                 , title: this.props.entity.tooltip, target: this.props.entity.source
             }
-            , [linkText]);
+            , body);
     }
 
 }

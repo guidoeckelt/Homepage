@@ -35,7 +35,7 @@ class FrontendApplicationController extends Controller
             try {
                 $view = $app->getContainer()->get('view');
 //            $view = $this->get('view');
-                return $view->render($response, "AboutTheDeveloper.html", ['view' => $view]);
+                return $view->render($response, "AboutTheDeveloper.html.twig", ['view' => $view]);
             } catch (\Exception $e) {
                 return $response->write($e->getMessage());
             }

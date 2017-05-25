@@ -27,6 +27,10 @@
     /*box-shadow: inset 0 0 10px 2px #969696;*/
 }
 
+.link > .link-text + .fa-external-link {
+    margin-left: 5px;
+}
+
 .transparent {
     opacity: 0;
 }
