@@ -33,18 +33,19 @@ class Link extends React.Component {
     }
 
     render() {
-        let linkText = ce('span', {
-            key: this.props.entity.text + '-text',
-            className: 'link-text'
-        }, this.props.entity.text);
-        let body = [linkText];
+        let body;
+        // let text = this.props.entity.text;
+        let text = ce('span', null, this.props.entity.text);
         if (this.props.entity.isExternal) {
             let icon = ce('i', {
                 key: this.props.entity.text + '-external-icon',
-                className: 'fa fa-external-link',
+                className: 'material-icons right',
                 'aria-hidden': true
-            }, null);
-            body.push(icon);
+            }, 'open_in_new');
+            // body = ce('span',null, [text, icon]);
+            body = [text, null];
+        } else {
+            body = [text];
         }
         return ce('a'
             , {
@@ -52,6 +53,25 @@ class Link extends React.Component {
                 , title: this.props.entity.tooltip, target: this.props.entity.source
             }
             , body);
+        // let linkText = ce('span', {
+        //     key: this.props.entity.text + '-text',
+        //     className: 'link-text'
+        // }, this.props.entity.text);
+        // let body = [linkText];
+        // if (this.props.entity.isExternal) {
+        //     let icon = ce('i', {
+        //         key: this.props.entity.text + '-external-icon',
+        //         className: 'fa fa-external-link',
+        //         'aria-hidden': true
+        //     }, null);
+        //     body.push(icon);
+        // }
+        // return ce('a'
+        //     , {
+        //         key: this.props.entity.text + '-a', className: 'link', href: this.props.entity.url
+        //         , title: this.props.entity.tooltip, target: this.props.entity.source
+        //     }
+        //     , body);
     }
 
 }

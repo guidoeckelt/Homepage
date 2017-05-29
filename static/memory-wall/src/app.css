@@ -1,7 +1,7 @@
 * {
 
     --body-height: 100vh;
-    --header-height: 50px;
+    --header-height: 65px;
     --main-height: calc(var(--body-height) - var(--header-height));
     --footer-height: 65px;
 }

@@ -7,6 +7,7 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "jquery": "^3.2.1",
+    "materialize-css": "^0.98.2",
     "sammy": "^0.7.6",
     "jsx-loader": "^0.13.2",
     "babel-core": "6.4.0",

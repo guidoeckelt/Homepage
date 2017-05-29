@@ -1,11 +1,14 @@
 import React from "react";
 import Sammy from "sammy";
-import jq from "jquery";
-import AppHeader from "./Header";
-import AppFooter from "./Footer";
+import $ from "jquery";
 import Gallery from "./Gallery/Gallery";
 import "./app.css";
 const ce = React.createElement;
+
+let url_pre = '/Homepage/MemoryWall';
+let url_pre_2 = '/Homepage/MemoryWall/#';
+let api_pre = '/Homepage/api/';
+let test_pre = '/Homepage/backend/memory-wall/';
 
 class MemoryWallApp extends React.Component {
 
@@ -26,10 +29,10 @@ class MemoryWallApp extends React.Component {
             });
             this.get(url_pre_2 + 'test', function () {// context is a Sammy.EventContext
                 // this.$element(); //Sammy($element, function...
-                // jq.get(pre2+'moments/1/image/image1.jpg', function(data){
+                // $.get(pre2+'moments/1/image/image1.jpg', function(data){
                 //     console.dir();
                 // });
-                // jq.get(api_pre+'header-links/', function(data){
+                // $.get(api_pre+'header-links/', function(data){
                 //     console.log(data);
                 // });
             });
@@ -37,25 +40,18 @@ class MemoryWallApp extends React.Component {
     }
 
     show(entity_type, entity_id, image_id) {
-        jq.get(api_pre + 'memorywall/' + entity_type + '/' + entity_id + '/image/' + image_id, function (data) {
+        $.get(api_pre + 'memorywall/' + entity_type + '/' + entity_id + '/image/' + image_id, function (data) {
             console.log(data);
         });
     }
 
     render() {
-        let header = ce(AppHeader, {}, null);
         let gallery = ce(Gallery, {}, null);
-        let main = ce('main', {key: 'app-main', className: 'app-main'}, gallery);
-        let footer = ce(AppFooter, {}, null);
-        return ce('div', {key: 'app-root', className: 'app'}, [header, main, footer]);
+        return ce('div', {key: 'app-root', className: 'app'}, [gallery]);
     }
 }
-let url_pre = '/Homepage/MemoryWall';
-let url_pre_2 = '/Homepage/MemoryWall/#';
-let api_pre = '/Homepage/api/';
-let test_pre = '/Homepage/backend/memory-wall/';
 
-jq(document).ready(function () {
+$(document).ready(function () {
     MemoryWallApp.run();
 });
 
