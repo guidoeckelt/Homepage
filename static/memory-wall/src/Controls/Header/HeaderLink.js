@@ -52,8 +52,8 @@ class HeaderLink extends React.Component {
             let ul = ce('ul'
                 , {key: this.props.entity.text + '-sublinks', className: 'dropdown-content', id: id}
                 , subklinks);
-            let a = ce(DropdownButton, {entity: this.props.entity, id: id}, null);
-            body = [a, ul];
+            let dropdownButton = ce(DropdownButton, {entity: this.props.entity, id: id}, null);
+            body = [dropdownButton, ul];
         } else {
             body = ce(Link, {entity: this.props.entity}, null);
         }

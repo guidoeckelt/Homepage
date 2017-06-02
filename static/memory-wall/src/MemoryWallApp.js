@@ -1,6 +1,6 @@
 import React from "react";
 import Sammy from "sammy";
-import $ from "jquery";
+import "jquery";
 import Gallery from "./Gallery/Gallery";
 import "./app.css";
 const ce = React.createElement;
@@ -32,7 +32,7 @@ class MemoryWallApp extends React.Component {
                 // $.get(pre2+'moments/1/image/image1.jpg', function(data){
                 //     console.dir();
                 // });
-                // $.get(api_pre+'header-links/', function(data){
+                // $.get(api_pre+'Header-links/', function(data){
                 //     console.log(data);
                 // });
             });

@@ -7,8 +7,8 @@ const backend_pre = '/Homepage/api';
 const routes = {
 
     links: {
-        header: backend_pre + '/header-links/',
-        footer: backend_pre + '/footer-links/'
+        header: backend_pre + '/Header-links/',
+        footer: backend_pre + '/Footer-links/'
     }
 
 };

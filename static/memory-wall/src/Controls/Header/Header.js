@@ -3,7 +3,8 @@
  */
 
 import React from "react";
-import $ from "jquery";
+import ReactDOM from "react-dom";
+import "jquery";
 import Routes from "../../HTTP/Routes";
 import HeaderLink from "./HeaderLink";
 import HeaderIconBox from "./HeaderIconBox";
@@ -47,27 +48,31 @@ class Header extends React.Component {
             return ce(HeaderLink, {entity: e}, null);
         });
         let linkUl = ce('ul', {
-            key: 'header-navbar-link-list',
+            key: 'Header-navbar-link-list',
             className: 'right hide-on-med-and-down',
             id: 'nav-mobile'
         }, headerLinks);
-        let container = ce('div', {key: 'header-container', className: 'nav-wrapper'}, [headerIconBox, linkUl]);
-        return ce('nav', {key: 'header-nav', className: 'b'}, container);
+        let container = ce('div', {key: 'Header-container', className: 'nav-wrapper'}, [headerIconBox, linkUl]);
+        return ce('nav', {key: 'Header-nav', className: 'b'}, container);
         // let headerIconBox = ce(HeaderIconBox, {}, null);
         // let headerLinks = this.state.links.map(function (e) {
         //     return ce(HeaderLink, {entity: e}, null);
         // });
-        // let linkUl = ce('ul', {key: 'header-navbar-link-list', className: 'nav navbar-nav navbar-right'}, headerLinks);
+        // let linkUl = ce('ul', {key: 'Header-navbar-link-list', className: 'nav navbar-nav navbar-right'}, headerLinks);
         // let navbar = ce('div', {
-        //     key: 'header-navbar',
+        //     key: 'Header-navbar',
         //     className: 'navbar-collapse collapse',
-        //     id: 'header-links'
+        //     id: 'Header-links'
         // }, linkUl);
-        // let container = ce('div', {key: 'header-container', className: 'container-fluid'}, [headerIconBox, navbar]);
-        // let nav = ce('nav', {key: 'header-nav', className: 'navbar navbar-default'}, container);
-        // return ce('header', {'key': 'app-header', className: 'app-header'}, nav);
+        // let container = ce('div', {key: 'Header-container', className: 'container-fluid'}, [headerIconBox, navbar]);
+        // let nav = ce('nav', {key: 'Header-nav', className: 'navbar navbar-default'}, container);
+        // return ce('Header', {'key': 'app-Header', className: 'app-Header'}, nav);
     }
 
 }
 
+ReactDOM.render(
+    ce(Header, null, null),
+    document.getElementById('app-header')
+);
 export default Header;

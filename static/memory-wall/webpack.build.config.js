@@ -3,9 +3,13 @@ const webpack = require('webpack');
 const path = require('path');
 
 const config = {
-    entry: './src/index.js',
+    entry: {
+        main: "./src/index.js",
+        header: "./src/Controls/Header/Header.js",
+        footer: "./src/Controls/Footer/Footer.js"
+    },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
         path: __dirname + '/dist'
     },
     module: {
@@ -42,7 +46,6 @@ const config = {
         ],
         extensions: ['.js', '.css']
     },
-    devtool: 'inline-source-map',
-    progress: true
+    devtool: 'inline-source-map'
 };
 module.exports = config;

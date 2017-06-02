@@ -3,6 +3,8 @@
  */
 
 import React from "react";
+import "jquery";
+import "materialize-css/bin/materialize";
 
 const ce = React.createElement;
 

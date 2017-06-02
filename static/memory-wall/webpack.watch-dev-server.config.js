@@ -5,9 +5,13 @@ const WebpackDevServer = require('webpack-dev-server');
 const path = require('path');
 
 const config = {
-    entry: './src/index.js',
+    entry: {
+        main: "./src/index.js",
+        header: "./src/Controls/Header/Header.js",
+        footer: "./src/Controls/Footer/Footer.js"
+    },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
         path: __dirname + '/dist'
     },
     module: {
