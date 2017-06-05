@@ -1,3 +1,20 @@
+* {
+    padding: 0;
+    margin: 0;
+    position: relative;
+
+    --body-height: 100vh;
+    --header-height: 65px;
+    --main-height: calc(var(--body-height) - var(--header-height));
+    --footer-height: 65px;
+}
+
+body {
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*height: 100vh;*/
+}
+
 .brand-logo {
     height: inherit;
 
@@ -6,4 +23,9 @@
 .brand-logo .brand-img {
     height: 100%;
 
+}
+
+.app-main {
+    width: 100%;
+    min-height: var(--main-height);
 }

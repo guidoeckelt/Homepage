@@ -3,7 +3,6 @@
     "slim/slim": "^3.0",
     "slim/extras": "^2.0.3",
     "twig/twig": "^1.33.2",
-    "slim/php-view": "^2.2",
     "monolog/monolog": "^1.22"
   }
 }

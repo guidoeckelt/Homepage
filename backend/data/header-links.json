@@ -78,11 +78,5 @@
         "source": "_blank"
       }
     ]
-  },
-  {
-    "text": "About The Developer",
-    "tooltip": "Section about the programmer behind the scenes",
-    "url": "/Homepage/AboutTheDeveloper/",
-    "source": "_self"
   }
 ]

@@ -15,14 +15,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/Homepage/static/materialize-custom.css" rel="stylesheet"/>
-    <!-- Latest compiled and minified CSS -->
-    {#<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"#}
-    {#integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">#}
     <!-- Font Awesome v4.7.0-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
-    <!-- Bootstrap Theme-->
-    {#<link href="/Homepage/static/themes/bootstrap-lumen.css" rel="stylesheet"/>#}
-    {#<link href="/Homepage/static/bootstrap-custom.css" rel="stylesheet"/>#}
     {% block Styles %}{% endblock %}
 
     {% block Scripts %}{% endblock %}
@@ -33,7 +27,7 @@
     <main id="app-main" class="app-main">
         {% block MainContent %}{% endblock %}
     </main>
-    <footer id="app-footer" class="app-footer"></footer>
+    <footer id="app-footer" class="page-footer app-footer"></footer>
 </div>
 <script src="/Homepage/static/memory-wall/dist/header.bundle.js"></script>
 <script src="/Homepage/static/memory-wall/dist/footer.bundle.js"></script>

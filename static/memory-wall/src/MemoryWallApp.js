@@ -2,7 +2,9 @@ import React from "react";
 import Sammy from "sammy";
 import "jquery";
 import Gallery from "./Gallery/Gallery";
-import "./app.css";
+import "materialize-css/extras/noUiSlider/nouislider";
+import "materialize-css/extras/noUiSlider/nouislider.css";
+// import "./app.css";
 const ce = React.createElement;
 
 let url_pre = '/Homepage/MemoryWall';

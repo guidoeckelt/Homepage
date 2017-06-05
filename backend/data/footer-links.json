@@ -1,10 +1,17 @@
 [
   {
+    "text": "About",
     "links": [
+      {
+        "text": "About The Developer",
+        "tooltip": "About The Developer",
+        "url": "/Homepage/AboutTheDeveloper/",
+        "source": "_self"
+      },
       {
         "text": "Impressum",
         "tooltip": "Impressum",
-        "url": "Homepage/Impressum/",
+        "url": "/Homepage/Impressum/",
         "source": "_self"
       }
     ]

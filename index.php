@@ -11,17 +11,12 @@ use Monolog\Logger;
 use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Slim\Views\PhpRenderer;
 
 require 'vendor/autoload.php';
 
-//SlimSlim::registerAutoloader();
-
-Twig_Autoloader::register();
-
 $fileDir = dirname(__FILE__);
-const pageRequested = '{name}.html requested';
-const logsPath = './logs/app.log';
+const DEBUG_PAGE_REQUESTED = '{name}.html requested';
+const APP_LOG_PATH = './logs/app.log';
 
 // Create and configure Slim app
 $config['displayErrorDetails'] = true;
@@ -36,18 +31,13 @@ $app_arr = ['settings' => $config];
 
 $app = new App($app_arr);
 $container = $app->getContainer();
-$container['view'] = function ($c) {
-//    $myService =  new PhpRenderer("./frontend/build/");
-    $myService = new PhpRenderer("./templates/");
-    return $myService;
-};
 $container['twig'] = function ($c) {
     $loader = new Twig_Loader_Filesystem(['./templates/', './static/']);
     return new Twig_Environment($loader, array());
 };
 $container['logger'] = function ($c) {
     $logLevel = Logger::DEBUG;
-    $fileHandler = new \Monolog\Handler\RotatingFileHandler(logsPath, 0, $logLevel);
+    $fileHandler = new \Monolog\Handler\RotatingFileHandler(APP_LOG_PATH, 0, $logLevel);
     $psrProcessor = new \Monolog\Processor\PsrLogMessageProcessor();
     $webProcessor = new \Monolog\Processor\WebProcessor();
 
@@ -63,6 +53,11 @@ $container['logger'] = function ($c) {
 //$controllers = [];
 //$controllers['frontend'] = new FrontendApplicationController($app);
 //$controllers['static'] = new StaticFilesController($app);
+//$app->group('/api', function () use ($app, $fileDir) {
+//    $controllers['backend'] = new BackendApplicationController($app);
+//    $controllers['backend'] = new MemoryWallApiController($app);
+//});
+
 // Define app routes
 $app->get('[/]', function (Request $request, Response $response, $args) {
     try {
@@ -71,7 +66,7 @@ $app->get('[/]', function (Request $request, Response $response, $args) {
         $response = $twig->render('./StartPage.html.twig');
         /** @var \Monolog\Logger $logger */
         $logger = $this->logger;
-        $logger->debug(pageRequested, ['name' => 'StartPage']);
+        $logger->debug(DEBUG_PAGE_REQUESTED, ['name' => 'StartPage']);
         return $response;
     } catch (\Exception $e) {
         return $response->write($e->getMessage());
@@ -84,7 +79,7 @@ $app->get('/AboutTheDeveloper[/]', function (Request $request, Response $respons
         $response = $twig->render('./AboutTheDeveloper.html.twig');
         /** @var \Monolog\Logger $logger */
         $logger = $this->logger;
-        $logger->debug(pageRequested, ['name' => 'AboutTheDeveloper']);
+        $logger->debug(DEBUG_PAGE_REQUESTED, ['name' => 'AboutTheDeveloper']);
         return $response;
     } catch (\Exception $e) {
         return $response->write($e->getMessage());
@@ -97,7 +92,7 @@ $app->get('/Impressum[/]', function (Request $request, Response $response, $args
         $response = $twig->render('./Impressum.html.twig');
         /** @var \Monolog\Logger $logger */
         $logger = $this->logger;
-        $logger->debug(pageRequested, ['name' => 'Impressum']);
+        $logger->debug(DEBUG_PAGE_REQUESTED, ['name' => 'Impressum']);
         return $response;
     } catch (\Exception $e) {
         return $response->write($e->getMessage());
@@ -111,7 +106,7 @@ $app->group('/MemoryWall', function () use ($app) {
             $response = $twig->render('./MemoryWallStartPage.html.twig');
             /** @var \Monolog\Logger $logger */
             $logger = $this->logger;
-            $logger->debug(pageRequested, ['name' => 'MemoryWallStartPage']);
+            $logger->debug(DEBUG_PAGE_REQUESTED, ['name' => 'MemoryWallStartPage']);
             return $response;
         } catch (\Exception $e) {
             return $response->write($e->getMessage());
@@ -129,7 +124,7 @@ $app->group('/Games', function () use ($app) {
             $response = $twig->render($path);
             /** @var \Monolog\Logger $logger */
             $logger = $this->logger;
-            $logger->debug(pageRequested, ['name' => $gameName]);
+            $logger->debug(DEBUG_PAGE_REQUESTED, ['name' => $gameName]);
             return $response;
         } catch (\Exception $e) {
             return $response->write($e->getMessage());
@@ -190,15 +185,14 @@ $app->group('/api', function () use ($app, $fileDir) {
             $image = imagecreatefromjpeg($imgPath);
             /** @var \Monolog\Logger $logger */
             $logger = $this->logger;
-//            $logger->debug('Image '. $imageId .' from '.$personId.' requested; '.$image);
-//    $newStream = new \GuzzleHttp\Psr7\LazyOpenStream('/path/to/file', 'r');
+            $logger->debug('Image ' . $imageId . ' from ' . $personId . ' requested; ' . $image);
+//            $newStream = new \GuzzleHttp\Psr7\LazyOpenStream('/path/to/file', 'r');
             /** @var Response $response */
             $response->write($image);
             $response = $response->withHeader('Content-Type', 'image/jpeg');
             return $response;
         });
     });
-//    $controllers['backend'] = new BackendApplicationController($app);
 });
 
 
