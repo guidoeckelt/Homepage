@@ -1,10 +1,11 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import Sammy from "sammy";
 import "jquery";
 import Gallery from "./Gallery/Gallery";
 import "materialize-css/extras/noUiSlider/nouislider";
 import "materialize-css/extras/noUiSlider/nouislider.css";
-// import "./app.css";
+// import "./memorywallapp.css";
 const ce = React.createElement;
 
 let url_pre = '/Homepage/MemoryWall';
@@ -57,4 +58,8 @@ $(document).ready(function () {
     MemoryWallApp.run();
 });
 
+ReactDOM.render(
+    ce(App, null, null),
+    document.getElementById('app-main')
+);
 export default MemoryWallApp;

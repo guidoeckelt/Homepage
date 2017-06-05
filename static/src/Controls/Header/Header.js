@@ -8,7 +8,7 @@ import "jquery";
 import Routes from "../../HTTP/Routes";
 import HeaderLink from "./HeaderLink";
 import HeaderIconBox from "./HeaderIconBox";
-// import "../../app.css";
+// import "../../memorywallapp.css";
 
 const ce = React.createElement;
 

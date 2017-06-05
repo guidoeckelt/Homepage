@@ -1,12 +1,16 @@
 //https://webpack.js.org
-const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
 const path = require('path');
 
 const config = {
     entry: {
-        main: "./src/index.js",
         header: "./src/Controls/Header/Header.js",
-        footer: "./src/Controls/Footer/Footer.js"
+        footer: "./src/Controls/Footer/Footer.js",
+        startpage: "./src/StartPage.js",
+        aboutthedeveloper: "./src/AboutTheDeveloper.js",
+        memorywall: "./memory-wall/src/index.js"
     },
     output: {
         filename: '[name].bundle.js',
@@ -26,7 +30,7 @@ const config = {
             },
             {
                 test: /\.css/,
-                loader: ['style-loader', 'css-loader']
+                use: ['style-loader', 'css-loader']
             }
             // {
             //     enforce: 'pre',
@@ -41,12 +45,24 @@ const config = {
         ]
     },
     resolve: {
-        modules: [
-            "node_modules"
-        ],
         extensions: ['.js', '.css']
     },
-    devtool: 'source-map',
-    watch: true
+    devtool: 'inline-source-map',
+    plugins: [
+        new HtmlWebpackPlugin(),
+        new WebpackDevServer()
+    ],
+    devServer: { //https://webpack.js.org/configuration/dev-server/
+        contentBase: __dirname + "/",
+        publicPath: "/build/",
+        port: 9000,
+        compress: true,
+        watchContentBase: true,
+        watchOptions: {
+            poll: false //set to true if files are on NFS(NetworkFiileSystems) or similar
+        },
+        noInfo: false,
+        quiet: false
+    }
 };
 module.exports = config;

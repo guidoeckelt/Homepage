@@ -32,7 +32,9 @@
   },
   "keywords": [
     "React",
+    "jQuery",
     "Materialize-CSS",
+    "Sammy",
     "Webpack",
     "Webpack-Dev-Server",
     "Lint",

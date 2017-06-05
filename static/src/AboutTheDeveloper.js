@@ -1,4 +1,4 @@
-var aboutme = angular.module("about-me", ["header", "controls"]);
+// var aboutme = angular.module("about-me", ["header", "controls"]);
 
 function Language(dto) {
     var self = this;
@@ -34,5 +34,5 @@ function LanguageController($http, $scope){
     };
     self.load();
 }
-LanguageController.$inject=["$http","$scope"];
-aboutme.controller("LanguageController",LanguageController);
+// LanguageController.$inject=["$http","$scope"];
+// aboutme.controller("LanguageController",LanguageController);

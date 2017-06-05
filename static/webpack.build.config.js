@@ -4,9 +4,11 @@ const path = require('path');
 
 const config = {
     entry: {
-        main: "./src/index.js",
         header: "./src/Controls/Header/Header.js",
-        footer: "./src/Controls/Footer/Footer.js"
+        footer: "./src/Controls/Footer/Footer.js",
+        startpage: "./src/StartPage.js",
+        aboutthedeveloper: "./src/AboutTheDeveloper.js",
+        memorywall: "./src/MemoryWallApp.js"
     },
     output: {
         filename: '[name].bundle.js',
