@@ -1,2 +1,3 @@
 cd ../static
-npm ls long
+npm ls -long
+pause
