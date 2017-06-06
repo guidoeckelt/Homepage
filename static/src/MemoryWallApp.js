@@ -59,7 +59,7 @@ $(document).ready(function () {
 });
 
 ReactDOM.render(
-    ce(App, null, null),
+    ce(MemoryWallApp, null, null),
     document.getElementById('app-main')
 );
 export default MemoryWallApp;

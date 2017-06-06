@@ -29,3 +29,11 @@ my homepage with various things to look out
     - [ ] start interface for choosing games
     - [ ] Games integrated :
 - Downloads of my programs
+
+## Backend Development
+
+<!-- see in [here](static/README.md) for more information about the backend development -->
+
+## Frontend Development
+
+see in [here](static/README.md) for more information about the frontend development
