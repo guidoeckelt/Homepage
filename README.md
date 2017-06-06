@@ -1,7 +1,39 @@
 # Homepage - Charaktar
 
-**Features:**
+my homepage with various things to look out
 
-- Links to my work on GitHub
-- Links to downloads of my programs
-- Games for some fun
+## Features
+
+- Links to:
+  - [x] my work on GitHub
+  - [x] random stuff
+-  Games for some fun:
+  - [ ] Tetris
+    - [x] falling object
+    - [x] collision between objects
+    - [ ] rotate falling object
+    - [ ] points system
+  - [ ] Snake
+    - [x] moving snake
+    - [x] food to eat spawns
+    - [x] wall death
+    - [ ] loose walls
+  - [ ] Asteroids
+    - [x] Shuttle
+    - [x] Gun
+    - [x] Projectile
+    - [x] Asteroid
+    - [x] loose walls
+    - [ ] Collision between objects
+  - [ ] Offline-Game-Browser
+    - [ ] start interface for choosing games
+    - [ ] Games integrated :
+- Downloads of my programs
+
+## Backend Development
+
+see in [here](README-backend.md) for more information about the backend development
+
+## Frontend Development
+
+see in [here](static/README.md) for more information about the frontend development

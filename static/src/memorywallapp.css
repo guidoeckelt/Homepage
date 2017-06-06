@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    box-sizing: border-box;
+
+    --body-height: 100vh;
+    --header-height: 65px;
+    --main-height: calc(var(--body-height) - var(--header-height));
+    --footer-height: 65px;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    height: 100vh;
+}
+
+.app-root {
+
+}
+
+.app-header {
+    width: 100%;
+    /*height: var(--header-height);*/
+
+}
+
+.app-main {
+    width: 100%;
+    min-height: var(--main-height);
+}
+
+.app-footer {
+    /*width: 100%;*/
+    /*height: var(--footer-height);*/
+
+    /*background: linear-gradient(0deg, #1d2f43, #0D3349 50%, #0c516c 90%);*/
+}

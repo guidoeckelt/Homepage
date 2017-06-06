@@ -1,0 +1,12 @@
+
+.link {
+
+    width: auto;
+    height: inherit;
+
+    padding: 0 5px;
+}
+
+.link > .link-text {
+    margin: auto;
+}

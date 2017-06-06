@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Snake</title>
+
+    <link href="Homepage/static/games/Snake/style.css" rel="stylesheet"></link>
+
+    <script src="Homepage/static/games/Snake/snake.js"></script>
+</head>
+<body>
+  <div id="root">
+    <div id="board">
+      <div class="boardItem">
+        <label class="label">
+          Score:
+          <span id="score" class="label"></span>
+        </label>
+      </div>
+      <table id="boardTable" class="boardItem">
+        <tr>
+          <th>A</th>
+          <th>B</th>
+          <th>D</th>
+        </tr>
+
+        <tr>
+          <td><span id="apples" class="label boardTableItem"/></td>
+          <td><span id="bananas" class="label boardTableItem"/></td>
+          <td><span id="diamants" class="label boardTableItem"/></td>
+        </tr>
+      </table>
+    </div>
+    <canvas id="canvas"></canvas>
+  </div>
+</body>
+</html>

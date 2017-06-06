@@ -1,0 +1,48 @@
+{% extends 'lib/base.html.twig' %}
+
+{% block Description %}About Me Page from github.com/guidoeckelt{% endblock %}
+
+{% block Title %}About The Developer{% endblock %}
+
+{% block Styles %}
+
+{% endblock %}
+
+{% block Scripts %}
+
+{% endblock %}
+
+{% block MainContent %}
+
+    {#<ge-paragraph title="Wie Alles Begann" footer="Letzte Aktualisierung vom 01.12.2016">#}
+    {#Der Gedanke mal irgendwann zu programmieren kam durch eine Faszination für Computer und Technik generell und#}
+    {#exzessives Zocken von Videospielen. Irgendwann mal ein eigenes Spiel zu entwickeln war seit dem her eigentlich#}
+    {#immer ein Wunsch von mir. Nach dem Abitur begann ich also eine Ausbildung bei der#}
+    {#<ge-link text="DRV Bund" tooltip="Deutsche Rentenversicherung Bund" source="_blank" external="true"#}
+    {#url="http://www.deutsche-rentenversicherung.de/Bund/de/Navigation/0_Home/home_node.html"></ge-link>#}
+    {#und sammelte schnell erste Erfahrung mit Programmieren und das erste Minispiel war geboren. Das konsolenbasierte#}
+    {#CastleArena mit einem 1vs1 Kampf auf Leben und Tod.#}
+    {#</ge-paragraph>#}
+    {#<ge-paragraph footer="Letzte Aktualisierung vom 02.12.2016">#}
+    {#Nach der Ausbildung: ...#}
+    {#</ge-paragraph>#}
+    {#<ge-paragraph>#}
+    {#<div ng-controller="LanguageController as languageController" class="language-controller">#}
+    {#<ge-list title="Programmiersprachen">#}
+    {#<ge-list-entry-titled ng-repeat="language in languages"#}
+    {#title="{{language.name}}" text="{{language.level}}" sub-title="Frameworks">#}
+    {#<ge-list-entry-titled ng-repeat="framework in language.frameworks"#}
+    {#title="{{framework.name}}" text="{{framework.level}}">#}
+    {#<ge-list-entry ng-repeat="version in framework.versions"#}
+    {#text="{{'Version '+version}}"></ge-list-entry>#}
+    {#</ge-list-entry-titled>#}
+    {#</ge-list-entry-titled>#}
+    {#</ge-list>#}
+    {#</div>#}
+    {#</ge-paragraph>#}
+
+{% endblock %}
+
+{% block AfterScripts %}
+    <script src="/Homepage/static/dist/aboutthedeveloper.bundle.js"></script>
+{% endblock %}
