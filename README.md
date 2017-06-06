@@ -37,3 +37,7 @@ see in [here](common/README.md) for more information about the backend developme
 ## Frontend Development
 
 see in [here](static/README.md) for more information about the frontend development
+
+## Offline Game Browser Development
+
+see in [here](OfflineGameBrowser/README.md) for more information about the offline game browser development

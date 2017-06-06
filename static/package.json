@@ -40,5 +40,9 @@
     "Lint",
     "Babel"
   ],
-  "author": "Guido Eckelt"
+  "author": {
+    "name": "Guido Eckelt",
+    "email": "guido.eckelt@gmail.com",
+    "url": "http://charaktar.lima-city.de"
+  }
 }
