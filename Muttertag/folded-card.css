@@ -1,0 +1,172 @@
+*{/* general stuff*/
+  padding: 0;
+  margin: 0;
+  position: relative;
+  box-sizing: border-box;
+
+  --card-side-size: 400px;
+  --default-border: 3px solid #000;
+  --default-background: #999;
+}
+
+#root{/*Example root*/
+  width: 100%;
+  height: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/*Folded Card root*/
+.folded-card{
+  width: var(--card-side-size);
+  height: 800px;
+
+  background: #000;
+  outline: var(--default-border);
+}
+.folded-card.open{
+
+}
+.folded-card.opened{
+  width: calc(var(--card-side-size) * 2 + 1px);
+}
+.folded-card.rear{
+  width: var(--card-side-size);
+}
+/*Folded Card Side, Page, Text, Image*/
+.folded-card > .side{
+  width: var(--card-side-size);
+  height: inherit;
+
+  background: transparent;
+
+  position: absolute;
+  top: 0;
+}
+.folded-card > .side > .page{
+  width: var(--card-side-size);
+  height: inherit;
+
+  background: var(--default-background);
+
+  padding: 10px 10px;
+  display: flex;
+  flex-flow: column nowrap;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.folded-card > .side > .page.center{
+  justify-content: center;
+  align-items: center;
+}
+.folded-card > .side > .page.v-center{
+  justify-content: center;
+}
+.folded-card > .side > .page.h-center{
+  align-items: center;
+}
+.folded-card > .side > .page.at-end{
+  justify-content: flex-end;
+}
+.folded-card > .side > .page .text{
+  width: auto;
+
+  font-size: 18pt;
+  font-style: normal;
+  font-family: Arial, sans-serif;
+  font-weight: 500;
+  color: #000;
+}
+.folded-card > .side > .page .text.at-end{
+  justify-self: flex-end;
+}
+.folded-card > .side > .page > .image{
+  width: 100%;
+
+}
+.folded-card > .side > .page .text .image{
+  width: 25px;
+  height: 25px;
+}
+/*Folded Card Side Left*/
+.folded-card > .side.left{
+  z-index: 1;
+
+}
+.folded-card.opened > .side.left{
+  border-right: 1px solid #000;
+
+  z-index: 1;
+  left: 0;
+}
+.folded-card.rear > .side.left{
+  z-index: 1;
+}
+/*Folded Card Side Left Page*/
+.folded-card > .side.left > .page.front{
+  z-index: 2;
+
+}
+.folded-card > .side.left > .page.back{
+  z-index: 1;
+
+}
+.folded-card.opened > .side.left > .page.front{
+  z-index: 1;
+
+}
+.folded-card.opened > .side.left > .page.back{
+  z-index: 2;
+
+}
+/*Folded Card Side Right*/
+.folded-card > .side.right{
+  z-index: 1;
+  display: none;
+
+}
+.folded-card.open > .side.right{
+
+  animation-duration: 3s;
+  animation-name: card-open;
+}
+.folded-card.opened > .side.right{
+  z-index: 1;
+  right: 0;
+  display: block;
+}
+.folded-card.rear > .side.right{
+  z-index: 2;
+  display: block;
+}
+/*Folded Card Side Right Page*/
+.folded-card > .side.right > .page.front{
+  z-index: 2;
+
+}
+.folded-card > .side.right > .page.back{
+  z-index: 1;
+
+}
+.folded-card.rear > .side.right > .page.front{
+  z-index: 1;
+
+}
+.folded-card.rear > .side.right > .page.back{
+  z-index: 2;
+
+}
+
+@keyframes card-open {
+  from{
+    display: block;
+    background: #000;
+  }
+  to{
+    background: #fff;
+      display: block;
+  }
+}
