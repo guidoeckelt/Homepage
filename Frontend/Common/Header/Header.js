@@ -5,7 +5,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "jquery";
-import Routes from "../../HTTP/Routes";
+import Routes from "../HTTP/Routes";
 import HeaderLink from "./HeaderLink";
 import HeaderIconBox from "./HeaderIconBox";
 // import "../../memorywallapp.css";

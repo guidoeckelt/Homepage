@@ -32,11 +32,11 @@ my homepage with various things to look out
 
 ## Backend Development
 
-see in [here](common/README.md) for more information about the backend development
+see in [here](Backend/README.md) for more information about the backend development
 
 ## Frontend Development
 
-see in [here](static/README.md) for more information about the frontend development
+see in [here](Frontend/README.md) for more information about the frontend development
 
 ## Offline Game Browser Development
 

@@ -5,7 +5,7 @@
 import React from "react";
 import Link from "../Link";
 import DropdownButton from "../DropdownButton";
-import {Util} from "../../Util";
+import {Util} from "../Util";
 
 const ce = React.createElement;
 

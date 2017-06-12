@@ -4,15 +4,15 @@ const path = require('path');
 
 const config = {
     entry: {
-        header: "./src/Controls/Header/Header.js",
-        footer: "./src/Controls/Footer/Footer.js",
-        startpage: "./src/StartPage.js",
-        aboutthedeveloper: "./src/AboutTheDeveloper.js",
-        memorywall: "./src/MemoryWallApp.js"
+        header: "./Common/Header/Header.js",
+        footer: "./Common/Footer/Footer.js",
+        startpage: "./Main/StartPage.js",
+        aboutthedeveloper: "./Main/AboutTheDeveloper.js",
+        memorywall: "./MemoryWall/MemoryWallApp.js"
     },
     output: {
         filename: '[name].bundle.js',
-        path: __dirname + '/dist'
+        path: path.join(__dirname, '../static', 'dist')
     },
     module: {
         rules: [

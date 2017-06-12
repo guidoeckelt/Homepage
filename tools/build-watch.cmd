@@ -1,3 +1,3 @@
-cd ../static
+cd ../Frontend
 
 npm run watch

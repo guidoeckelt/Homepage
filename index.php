@@ -43,7 +43,6 @@ $container['logger'] = function ($c) {
 
     $browserHandler = new \Monolog\Handler\BrowserConsoleHandler($logLevel);
     $introspectionProcessor = new \Monolog\Processor\IntrospectionProcessor($logLevel);
-//    $gitProcessor = new \Monolog\Processor\GitProcessor();
     return new \Monolog\Logger('app_logger'
         , [$fileHandler, $browserHandler]
         , [$psrProcessor, $webProcessor, $introspectionProcessor]);
@@ -134,7 +133,7 @@ $app->group('/Games', function () use ($app) {
 $app->group('/api', function () use ($app, $fileDir) {
     $app->get('/header-links[/]', function (Request $request, Response $response, $args) use ($fileDir) {
         try {
-            $jsonFile = file_get_contents($fileDir . '/backend/data/header-links.json');
+            $jsonFile = file_get_contents($fileDir . '/data/header-links.json');
             $jsonPhp = json_decode($jsonFile, true);
             $json = json_encode($jsonPhp);
             return $response->withJson($jsonPhp);
@@ -145,7 +144,7 @@ $app->group('/api', function () use ($app, $fileDir) {
     });
     $app->get('/footer-links[/]', function (Request $request, Response $response, $args) use ($fileDir) {
         try {
-            $jsonFile = file_get_contents($fileDir . '/backend/data/footer-links.json');
+            $jsonFile = file_get_contents($fileDir . '/data/footer-links.json');
             $jsonPhp = json_decode($jsonFile, true);
             return $response->withJson($jsonPhp);
         } catch (\Exception $e) {
@@ -156,7 +155,7 @@ $app->group('/api', function () use ($app, $fileDir) {
 
     $app->get('/languages+frameworks[/]', function (Request $request, Response $response, $args) use ($fileDir) {
         try {
-            $jsonFile = file_get_contents($fileDir . '/backend/data/languages+frameworks.json');
+            $jsonFile = file_get_contents($fileDir . '/data/languages+frameworks.json');
             $jsonPhp = json_decode($jsonFile, true);
             $json = json_encode($jsonPhp);
             return $response->withJson($jsonPhp);

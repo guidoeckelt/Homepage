@@ -4,7 +4,7 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import Routes from "../../HTTP/Routes";
+import Routes from "../HTTP/Routes";
 import FooterLink from "./FooterLink";
 
 const ce = React.createElement;

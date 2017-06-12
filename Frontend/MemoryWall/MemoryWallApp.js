@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Sammy from "sammy";
 import "jquery";
-import Gallery from "./Gallery/Gallery";
+import Gallery from "../Common/Gallery/Gallery";
 import "materialize-css/extras/noUiSlider/nouislider";
 import "materialize-css/extras/noUiSlider/nouislider.css";
 // import "./memorywallapp.css";

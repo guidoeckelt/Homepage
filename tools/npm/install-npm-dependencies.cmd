@@ -1,2 +1,3 @@
-cd ../static
+cd ../Frontend
+
 npm install
