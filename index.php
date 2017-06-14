@@ -28,7 +28,6 @@ $config['addContentLengthHeader'] = false;
 //$config['db']['dbname'] = "exampleapp";
 
 $app_arr = ['settings' => $config];
-
 $app = new App($app_arr);
 $container = $app->getContainer();
 $container['twig'] = function ($c) {
