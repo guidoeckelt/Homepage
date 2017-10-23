@@ -1,0 +1,14 @@
+[
+  {
+    "name" : "Asteroids",
+    "location" : "games/Asteroids.bundle.js"
+  },
+  {
+    "name" : "Tetris",
+    "location" : "games/Tetris.bundle.js"
+  },
+  {
+    "name" : "Snake",
+    "location" : "games/Snake.bundle.js"
+  }
+]

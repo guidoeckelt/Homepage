@@ -42,9 +42,7 @@ $container['logger'] = function ($c) {
 
     $browserHandler = new \Monolog\Handler\BrowserConsoleHandler($logLevel);
     $introspectionProcessor = new \Monolog\Processor\IntrospectionProcessor($logLevel);
-    return new \Monolog\Logger('app_logger'
-        , [$fileHandler, $browserHandler]
-        , [$psrProcessor, $webProcessor, $introspectionProcessor]);
+    return new \Monolog\Logger('app_logger', [$fileHandler, $browserHandler], [$psrProcessor, $webProcessor, $introspectionProcessor]);
 };
 
 
@@ -112,22 +110,35 @@ $app->group('/MemoryWall', function () use ($app) {
     });
 
 });
-$app->group('/Games', function () use ($app) {
-    $app->get('/{name}[/]', function (Request $request, Response $response, $args) {
-        try {
-            $gameName = $request->getAttribute('name');
-            $path = 'games/' . $gameName . '/index.html';
-            /** @var Twig_Environment $twig */
-            $twig = $this->twig;
-            $response = $twig->render($path);
-            /** @var \Monolog\Logger $logger */
-            $logger = $this->logger;
-            $logger->debug(DEBUG_PAGE_REQUESTED, ['name' => $gameName]);
-            return $response;
-        } catch (\Exception $e) {
-            return $response->write($e->getMessage());
-        }
+$app->group('/Game', function () use ($app) {
+    $app->get('[/[#]]', function (Request $request, Response $response, $args) {
+      try {
+          /** @var Twig_Environment $twig */
+          $twig = $this->twig;
+          $response = $twig->render('./GameLauncher.html.twig');
+          /** @var \Monolog\Logger $logger */
+          $logger = $this->logger;
+          $logger->debug(DEBUG_PAGE_REQUESTED, ['name' => 'GameLauncher']);
+          return $response;
+      } catch (\Exception $e) {
+          return $response->write($e->getMessage());
+      }
     });
+    // $app->get('/{name}[/]', function (Request $request, Response $response, $args) {
+    //     try {
+    //         $gameName = $request->getAttribute('name');
+    //         $path = 'games/' . $gameName . '/index.html';
+    //         /** @var Twig_Environment $twig */
+    //         $twig = $this->twig;
+    //         $response = $twig->render($path);
+    //         /** @var \Monolog\Logger $logger */
+    //         $logger = $this->logger;
+    //         $logger->debug(DEBUG_PAGE_REQUESTED, ['name' => $gameName]);
+    //         return $response;
+    //     } catch (\Exception $e) {
+    //         return $response->write($e->getMessage());
+    //     }
+    // });
 });
 $app->group('/api', function () use ($app, $fileDir) {
     $app->get('/header-links[/]', function (Request $request, Response $response, $args) use ($fileDir) {
@@ -163,6 +174,19 @@ $app->group('/api', function () use ($app, $fileDir) {
             return $response->withStatus(500);
         }
     });
+    $app->get('/games[/]', function (Request $request, Response $response, $args) use ($fileDir) {
+        try {
+            $jsonFile = file_get_contents($fileDir . '/data/games.json');
+            $jsonPhp = json_decode($jsonFile, true);
+            $json = json_encode($jsonPhp);
+            return $response->withJson($jsonPhp);
+        } catch (\Exception $e) {
+            $response->write($e->getMessage());
+            return $response->withStatus(500);
+        }
+    });
+
+
     $app->group('/memorywall', function () use ($app) {
 
 
