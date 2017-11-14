@@ -40,4 +40,4 @@ see in [here](Frontend/README.md) for more information about the frontend develo
 
 ## Offline Game Browser Development
 
-see in [here](OfflineGameBrowser/README.md) for more information about the offline game browser development
+see in [here](Games/OfflineBrowser/README.md) for more information about the offline game browser development
