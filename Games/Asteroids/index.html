@@ -1,0 +1,37 @@
+<!Doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Asteroids</title>
+
+  <!-- <link href="/Homepage/static/games/Astroids/style.css" rel="stylesheet"></link> -->
+
+	<!-- <script src="/Homepage/static/games/aalib/Vector.js"></script>
+	<script src="/Homepage/static/games/aalib/Collision.js"></script>
+	<script src="/Homepage/static/games/aalib/GameObject.js"></script>
+	<script src="/Homepage/static/games/aalib/Renderer.js"></script>
+	<script src="/Homepage/static/games/aalib/Game.js"></script>
+  <script src="/Homepage/static/games/Asteroids/Projectile.js"></script>
+	<script src="/Homepage/static/games/Asteroids/ShuttleGun.js"></script>
+	<script src="/Homepage/static/games/Asteroids/Shuttle.js"></script>
+	<script src="/Homepage/static/games/Asteroids/Asteroid.js"></script>
+  <script src="/Homepage/static/games/Asteroids/Asteroids.js"></script> -->
+	
+	<script src="/XAMPP/htdocs/Homepage/static/dist/games/Asteroids.bundle.js"></script>
+
+  <script>
+    window.onload = function(){
+      var canvasContainer = 'root';
+			if(window.frameElement){
+				console.log('iframe');
+				document.body.classList.add('iframe');
+			}
+      game = new Asteroids.Game(canvasContainer);
+      game.start();
+    };
+  </script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>

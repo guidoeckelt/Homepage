@@ -1,5 +1,5 @@
 {
-  "name": "Games",
+  "name": "games",
   "version": "1.0.0",
   "description": "Games and GameLauncher",
   "main": "src/index.js",
@@ -19,9 +19,10 @@
     "uglifyjs-webpack-plugin": "^0.4.3"
   },
   "devDependencies": {
-    "webpack-dev-server": "^2.3.0",
+    
     "html-webpack-plugin": "^2.28.0",
-    "source-map-loader": "^0.1.6"
+    "source-map-loader": "^0.1.6",
+    "webpack-dev-server": "^2.3.0"
   },
   "scripts": {
     "build": "webpack --config webpack.build.config.js --progress",

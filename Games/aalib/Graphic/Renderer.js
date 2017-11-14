@@ -1,8 +1,13 @@
+import Projectile from '../../Asteroids/Projectile';
+import Shuttle from '../../Asteroids/Shuttle';
+import Asteroid from '../../Asteroids/Asteroid';
+import Asteroids from '../../Asteroids/Asteroids';
+
 class Renderer{
   constructor(game){
     this._game = game;
     this._canvas = game._canvas;
-    this._context = canvas.getContext('2d');
+    this._context = this._canvas.getContext('2d');
     this._drawProcess = null;
     this._isShowingInterface = false;
     this._delay = 5;
@@ -19,7 +24,7 @@ class Renderer{
   }
 
   _drawLoop(){
-    var objects = Asteroids.getGameObjects();
+    var objects = this._game.gameObjects;
     this._clear();
     this._draw('background');
     for(var i=objects.length-1;i>=0;i--){
@@ -108,6 +113,7 @@ class Renderer{
     this._drawText(asteroid.hp, 0,0, asteroid.width, asteroid.height);
   }
   _drawProjectile(projectile){
+    // console.log("projectile x:"+projectile.position.x+"projectile y:"+projectile.position.y);
     // context.rotate(projectile.direction);
     this._context.fillStyle = '#fff';
     this._context.fillRect(projectile.position.x,projectile.position.y,projectile.width,projectile.height);
@@ -244,3 +250,5 @@ class RendererCanvas{
   }
 
 }
+
+export default Renderer;

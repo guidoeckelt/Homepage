@@ -1,8 +1,9 @@
+
 class Vector{
-  constructor(x, y, z){
-    this.x = x;
-    this.y = y;
-    this.z = z;
+  constructor(xP, yP, zP=0){
+    this._x = xP;
+    this._y = yP;
+    this._z = zP;
   }
 
   length(){
@@ -10,7 +11,7 @@ class Vector{
   }
   normalize(){
     var length = this.length();
-    return new Vector2D(this.x/length, this.y/length, this.z/length);
+    return new Vector(this.x/length, this.y/length, this.z/length);
   }
 // Operator Functions
   add(other){
@@ -38,16 +39,29 @@ class Vector{
     return new Vector(this.x*scalar, this.y*scalar, this.z*scalar);
   }
 
-// Angle Functions
-//TODO z-component for 3D
-static radiansBetweenVectors(vector1,vector2){
-  return (Math.atan2(vector1.y,vector1.x) - Math.atan2(vector2.y,vector2.x));
-}
-static directionVectorFromAngle(angle){
-  return new Vector(Math.cos(angle),Math.sin(angle));
-}
-static angleFromDirectionVector(headingDirection){
-  return Math.atan2(headingDirection.y,headingDirection.x);
-}
+  get x(){
+    return this._x;
+  }
+  get y(){
+    return this._y;
+  }
+  get z(){
+    return this._z;
+  }
+
+
+  // Angle Functions
+  //TODO z-component for 3D
+  static radiansBetweenVectors(vector1,vector2){
+    return (Math.atan2(vector1.y,vector1.x) - Math.atan2(vector2.y,vector2.x));
+  }
+  static directionVectorFromAngle(angle){
+    return new Vector(Math.cos(angle),Math.sin(angle));
+  }
+  static angleFromDirectionVector(headingDirection){
+    return Math.atan2(headingDirection.y,headingDirection.x);
+  }
 
 }
+
+export default Vector;

@@ -4,7 +4,7 @@ const path = require('path');
 
 const config = {
     entry: {
-        GameLauncher: "./GameLauncher.js",
+        GameLauncher: "./GameLauncher/Main.js",
         Asteroids: "./Asteroids/Main.js",
         Tetris: './Tetris/Main.js',
         Snake: './Snake/Main.js'        
