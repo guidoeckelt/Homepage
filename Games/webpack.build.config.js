@@ -4,14 +4,15 @@ const path = require('path');
 
 const config = {
     entry: {
-        GameLauncher: "./GameLauncher/Main.js",
-        Asteroids: "./Asteroids/Main.js",
+        GameLauncher: './GameLauncher/Main.js',
+        Asteroids: './Asteroids/Main.js',
         Tetris: './Tetris/Main.js',
-        Snake: './Snake/Main.js'        
+        Snake: './Snake/Main.js',
+        BattleArena: './BattleArena/Main.js'  
     },
     output: {
-        filename: '[name].bundle.js',
-        path: path.join(__dirname, '../static', 'dist/games')
+        filename: '[name]/[name].bundle.js',
+        path: path.join(__dirname, '../static', 'dist/games/')
     },
     module: {
         rules: [

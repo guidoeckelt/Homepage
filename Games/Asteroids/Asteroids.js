@@ -1,9 +1,10 @@
 import Util from '../aalib/Util';
 import Vector from '../aalib/Vector';
+import Collision from '../aalib/Collision';
 import Game from '../aalib/Game';
-import Renderer from '../aalib/Graphic/Renderer';
 
 import Shuttle from './Shuttle';
+import Projectile from './Projectile';
 import Asteroid from './Asteroid';
 
 class Asteroids extends Game{

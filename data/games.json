@@ -1,14 +1,22 @@
 [
   {
     "name" : "Asteroids",
-    "location" : "games/Asteroids.bundle.js"
+    "location" : "games/Asteroids/Asteroids.bundle.js",
+    "html" : "games/Asteroids/index.html"
   },
   {
     "name" : "Tetris",
-    "location" : "games/Tetris.bundle.js"
+    "location" : "games/Tetris/Tetris.bundle.js",
+    "html" : "games/Tetris/index.html"
   },
   {
     "name" : "Snake",
-    "location" : "games/Snake.bundle.js"
+    "location" : "games/Snake/Snake.bundle.js",
+    "html" : "games/Snake/index.html"
+  },
+  {
+    "name" : "BattleArena",
+    "location" : "games/BattleArena/BattleArena.bundle.js",
+    "html" : "games/BattleArena/index.html"
   }
 ]

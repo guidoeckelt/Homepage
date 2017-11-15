@@ -1,0 +1,194 @@
+/*		Root							*/
+body{
+	margin: 						0;
+	padding: 						0;
+	width:							100%;
+	height:							100%;
+	height:							100vh;
+}
+.root{
+	width:							auto;
+	height:							auto;
+	
+	display:						flex;
+	flex-flow: 						row nowrap;
+	align-items:					center;
+	justify-content:				flex-start;
+}
+/*		Container							*/
+.container{
+	display:						-webkit-flex;
+	display:						flex;
+	flex-direction: 				column;
+	flex-wrap:						nowrap;
+	align-items:					center;
+	justify-content:				flex-start;
+}
+/*		Tetris-Szene(table)							*/
+
+/*		Tetris-Display(nextBlock)					*/
+#display{
+	flex-grow:						1;
+	display:						-webkit-flex;
+	display:						flex;
+	flex-direction: 				column;
+	flex-wrap:						nowrap;
+	justify-content:				flex-start;
+	
+}
+/*		Next-Block							*/
+#next{
+	width: 							140px;
+	height: 						140px;
+	background-color:				#C4C4C4;
+	border:							3px solid #000000;
+	display:						inline-block;
+	position:						relative;
+}
+/*======BLOCKS==========================*/
+.block{
+	position:						absolute;
+	width:							30px;
+	height:							30px;
+	border: 						2px solid #000000;
+}
+/*   	I-Block		*/
+#next[data-block-type = "1"] .block{
+	background-color: 				#ff0000;
+}
+#next[data-block-type = "1"] .block:nth-child(1){
+	left:							55px;
+	top:							10px;
+}
+#next[data-block-type = "1"] .block:nth-child(2){
+	left:							55px;
+	top:							40px;
+}
+#next[data-block-type = "1"] .block:nth-child(3){
+	left:							55px;
+	top:							70px;
+}
+#next[data-block-type = "1"] .block:nth-child(4){
+	left:							55px;
+	top:							100px;
+}
+/*		T-Block		*/
+#next[data-block-type = "2"] .block{
+	background-color: 				#00ff00;
+}
+#next[data-block-type = "2"] .block:nth-child(1){
+	left:							55px;
+	top:							70px;
+}
+#next[data-block-type = "2"] .block:nth-child(2){
+	left:							25px;
+	top:							40px;
+}
+#next[data-block-type = "2"] .block:nth-child(3){
+	left:							55px;
+	top:							40px;
+}
+#next[data-block-type = "2"] .block:nth-child(4){
+	left:							85px;
+	top:							40px;
+}
+/*		Z-Block		*/
+#next[data-block-type = "3"] .block{
+	background-color: 				#0000ff;
+}
+#next[data-block-type = "3"] .block:nth-child(1){
+	left:							40px;
+	top:							85px;
+}
+#next[data-block-type = "3"] .block:nth-child(2){
+	left:							40px;
+	top:							55px;
+}
+#next[data-block-type = "3"] .block:nth-child(3){
+	left:							70px;
+	top:							55px;
+}
+#next[data-block-type = "3"] .block:nth-child(4){
+	left:							70px;
+	top:							25px;
+}
+/*		S-Block		*/
+#next[data-block-type = "4"] .block{
+	background-color: 				#2EFEF7;
+}
+#next[data-block-type = "4"] .block:nth-child(1){
+	left:							70px;
+	top:							85px;
+}
+#next[data-block-type = "4"] .block:nth-child(2){
+	left:							70px;
+	top:							55px;
+}
+#next[data-block-type = "4"] .block:nth-child(3){
+	left:							40px;
+	top:							55px;
+}
+#next[data-block-type = "4"] .block:nth-child(4){
+	left:							40px;
+	top:							25px;
+}
+/*		O-Block		*/
+#next[data-block-type = "5"] .block{
+	background-color: 				#FFBF00;
+}
+#next[data-block-type = "5"] .block:nth-child(1){
+	left:							40px;
+	top:							70px;
+}
+#next[data-block-type = "5"] .block:nth-child(2){
+	left:							70px;
+	top:							70px;
+}
+#next[data-block-type = "5"] .block:nth-child(3){
+	left:							40px;
+	top:							40px;
+}
+#next[data-block-type = "5"] .block:nth-child(4){
+	left:							70px;
+	top:							40px;
+}
+/*		L-Block		*/
+#next[data-block-type = "6"] .block{
+	background-color: 				#F4FA58;
+}
+#next[data-block-type = "6"] .block:nth-child(1){
+	left:							40px;
+	top:							85px;
+}
+#next[data-block-type = "6"] .block:nth-child(2){
+	left:							70px;
+	top:							85px;
+}
+#next[data-block-type = "6"] .block:nth-child(3){
+	left:							40px;
+	top:							55px;
+}
+#next[data-block-type = "6"] .block:nth-child(4){
+	left:							40px;
+	top:							25px;
+}
+/*		ReverseL-Block		*/
+#next[data-block-type = "7"] .block{
+	background-color: 				#4B088A;
+}
+#next[data-block-type = "7"] .block:nth-child(1){
+	left:							40px;
+	top:							85px;
+}
+#next[data-block-type = "7"] .block:nth-child(2){
+	left:							70px;
+	top:							85px;
+}
+#next[data-block-type = "7"] .block:nth-child(3){
+	left:							70px;
+	top:							55px;
+}
+#next[data-block-type = "7"] .block:nth-child(4){
+	left:							70px;
+	top:							25px;
+}

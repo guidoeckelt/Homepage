@@ -2,6 +2,7 @@ import Util from '../aalib/Util';
 import Vector from '../aalib/Vector';
 
 class GameObject{
+  
   constructor(positionP, widthP, heightP, directionP){
     this._position = positionP;
     this._width = widthP;

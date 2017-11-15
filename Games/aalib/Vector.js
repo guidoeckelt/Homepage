@@ -1,5 +1,6 @@
 
 class Vector{
+  
   constructor(xP, yP, zP=0){
     this._x = xP;
     this._y = yP;
@@ -15,27 +16,27 @@ class Vector{
   }
 // Operator Functions
   add(other){
-    if (!other instanceof Vector) {
-        // TODO ExceptionContext
-        // ExceptionContext.throw(new Exception("Object is not a Vector2D"));
-        return;
-    }
+    // if (!(other instanceof Vector)) {
+    //     // TODO ExceptionContext
+    //     // ExceptionContext.throw(new Exception("Object is not a Vector2D"));
+    //     return;
+    // }
     return new Vector(this.x+other.x, this.y+other.y, this.z+other.z);
   }
   substract(other){
-    if (!other instanceof Vector) {
-        // TODO ExceptionContext
-        // ExceptionContext.throw(new Exception("Object is not a Vector2D"));
-        return;
-    }
+    // if (!(other instanceof Vector)) {
+    //     // TODO ExceptionContext
+    //     // ExceptionContext.throw(new Exception("Object is not a Vector2D"));
+    //     return;
+    // }
     return new Vector(this.x-other.x, this.y-other.y, this.z-other.z);
   }
   multiplyByScalar(scalar){
-    if (!scalar instanceof Number) {
-        // TODO ExceptionContext
-        // ExceptionContext.throw(new Exception("Object is not a Vector2D"));
-        return;
-    }
+    // if (!(scalar instanceof Number)) {
+    //     // TODO ExceptionContext
+    //     // ExceptionContext.throw(new Exception("Object is not a Vector2D"));
+    //     return;
+    // }
     return new Vector(this.x*scalar, this.y*scalar, this.z*scalar);
   }
 

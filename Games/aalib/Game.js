@@ -1,8 +1,9 @@
-import Util from "./Util";
-import GameObject from './GameObject'
-import Renderer from "./Graphic/Renderer";
+import Util from './Util';
+import GameObject from './GameObject';
+import Renderer from './Graphic/Renderer';
 
 class Game{
+
   constructor(canvasContainer){
 
     this._interpreteParameter(canvasContainer);
@@ -71,20 +72,20 @@ class Game{
 
 // Game - Static Functions
   _add(gameObject){
-    if(!gameObject instanceof GameObject){
+    if(!(gameObject instanceof GameObject)){
       // console.dir(gameObject);
     }
-    console.dir(gameObject);
+    // console.dir(gameObject);
     this._gameObjects.push(gameObject);
   }
   _remove(gameObject){
-    if(!gameObject instanceof GameObject){
-
+    if(!(gameObject instanceof GameObject)){
+      // console.dir(gameObject);
     }
     let list = this._gameObjects;
     list.splice(list.indexOf(gameObject),1);
   }
-  get canvas(){ return this._canvas; };
+  get canvas(){ return this._canvas; }
   get gameObjects(){ return this._gameObjects; }
 
 }
