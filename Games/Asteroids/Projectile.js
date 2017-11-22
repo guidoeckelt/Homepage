@@ -13,7 +13,7 @@ class Projectile extends GameObject{
   }
 
   move(){
-    var oldPosition = this.postion;
+    var oldPosition = this.position;
     var directionVector = Vector.directionVectorFromAngle(this.direction);
     directionVector = directionVector.multiplyByScalar(this.speed);
     this._position = this.position.substract(directionVector);

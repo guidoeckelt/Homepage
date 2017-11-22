@@ -29,6 +29,9 @@ module.exports = {
         "no-global-assign": [
             "error"
         ],
+        "no-undef": [
+            "error"
+        ],
         "valid-typeof": [
             "error"
         ],
